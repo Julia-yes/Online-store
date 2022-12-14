@@ -5,7 +5,8 @@
   "main": "webpack.config.js",
   "scripts": {
     "build": "webpack",
-    "watch": "webpack --watch"
+    "watch": "webpack --watch",
+    "style": "sass --watch ./src/sass/main.scss ./src/sass/style.css"
   },
   "repository": {
     "type": "git",
