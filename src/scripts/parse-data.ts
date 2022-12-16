@@ -37,9 +37,9 @@ class Products implements IProducts {
     return this.products[id - 1];
   }
 
-  // filterProducts() {
-
-  // }
+  filterProducts() {
+    
+  }
 }
 
 class Product implements IProduct {
