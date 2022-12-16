@@ -1,23 +1,19 @@
-const root = document.querySelector('.store__project');
-if (root) {
-  root.innerHTML = `<ul class='list'>
-  <li class='list__item'><a href='/'>Home</a></li>
-  <li class='list__item'><a href='/product'>Product card</a></li>
-  <li class='list__item'><a href='/cart'>Cart</a></li>
-  </ul>
-  <div class='page__content'></div>`
-}
+import {renderErrorPage} from './error-page';
+import {renderCartPage} from './cart-page';
+import {renderProductPage} from './product-page';
+import {renderStorePage} from './store-page';
 
 const routes : { [key: string]: () => void } = {
-  '/' : renderHome,
+  '/' : renderStorePage,
   '/product' : renderProductPage,
-  '/cart' : renderCart,
-  'error' : renderError,
+  '/cart' : renderCartPage,
+  'error' : renderErrorPage,
 };
 
-const handleLocation = async() => {
+export const handleLocation = async() => {
   const path : string = window.location.pathname;
   const route = routes[path] || routes.error;
+  console.log(route)
   route();
 }
 
@@ -33,33 +29,4 @@ buttons.forEach((element) => {
   })
 })
 
-function renderHome() : void {
-  const content = document.querySelector('.page__content');
-  if (content) {
-    content.innerHTML = "Home"
-  }  
-}
-
-function renderProductPage() : void {
-  const content = document.querySelector('.page__content');
-  if (content) {
-    content.innerHTML = "Product"
-  }  
-}
-
-function renderCart() : void {
-  const content = document.querySelector('.page__content');
-  if (content) {
-    content.innerHTML = "Cart"
-  }  
-}
-
-function renderError() : void {
-  const content = document.querySelector('.page__content');
-  if (content) {
-    content.innerHTML = "Error"
-  }
-}
-
 window.onpopstate = handleLocation;
-handleLocation();
