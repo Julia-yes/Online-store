@@ -1,7 +1,7 @@
 export function renderStorePage() : void {
   const content = document.querySelector('.main');
   if (content) {
-    content.innerHTML = `<main class = 'main'>
+    content.innerHTML = `
     <article class='store__page store'>
       <div class='store__search search'>
         <div class='search__block'>
@@ -11,23 +11,23 @@ export function renderStorePage() : void {
       </div>
       <div class='store__main'>
         <aside class='store__filters filter'>
-          <div class='filter__category'>
+          <div class='filter__item filter__category'>
             <div class='filter__title'>Category</div>
-            <div class='filter__area></div>
+            <div class='filter__area'></div>
           </div>
-          <div class='filter__brend'>
+          <div class='filter__item filter__brend'>
             <div class='filter__title'>Brend</div>
-            <div class='filter__area></div>
+            <div class='filter__area'></div>
           </div>
-          <div class='filter__price'>
+          <div class='filter__item filter__price'>
             <div class='filter__title'>Price</div>
-            <div class='filter__area></div>
+            <div class='filter__range'></div>
           </div>
-          <div class='filter__stock'>
+          <div class='filter__item filter__stock'>
             <div class='filter__title'>Stock</div>
-            <div class='filter__area></div>
+            <div class='filter__area'></div>
           </div>
-          <div class='filter__buttons'>
+          <div class='filter__item filter__buttons'>
             <button class='filter__button button'>Reset filters</button>
             <button class='filter__button button'>Save filters</button>
           </div>
@@ -52,6 +52,6 @@ export function renderStorePage() : void {
         </section>
       </div>
     </article>
-  </main>`
+  `
   }  
 }

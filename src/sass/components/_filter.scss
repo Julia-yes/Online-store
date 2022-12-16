@@ -1,0 +1,20 @@
+.filter {
+  width: 30%;
+
+  &__item {
+    padding-bottom: 30px;
+  }
+
+  &__title {
+    color: $red;
+    font-size: 28px;
+    padding-bottom: 10px;
+    text-align: center;
+  }
+
+  &__area {
+    padding: 10px;
+    border: 1px solid $red;
+    border-radius: 10px;
+  }
+}
