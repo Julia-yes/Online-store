@@ -1,22 +1,21 @@
 const path = require('path');
 const { merge } = require('webpack-merge');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const baseConfig = {
     entry: path.resolve(__dirname, './src/index.ts'),
     mode: 'development',
     module: {
         rules: [
-            //{
-            //    test: /\.css$/i,
-            //    use: ['style-loader', 'css-loader'],
-            //},
             {
                 test: /\.s[ac]ss$/i,
                 use: [
-                  "style-loader",
-                  "css-loader",
-                  "sass-loader",
+                    {
+                        loader: MiniCssExtractPlugin.loader,
+                    },
+                    "css-loader",
+                    "sass-loader",
                 ],
             },
             {
@@ -36,6 +35,7 @@ const baseConfig = {
     },
     plugins: [
         new CleanWebpackPlugin(),
+        new MiniCssExtractPlugin()
     ],
 };
 
