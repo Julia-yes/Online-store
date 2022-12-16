@@ -3,6 +3,7 @@ import {renderCartPage} from './cart-page';
 import {renderProductPage} from './product-page';
 import {renderStorePage} from './store-page';
 
+
 const routes : { [key: string]: () => void } = {
   '/' : renderStorePage,
   '/product' : renderProductPage,
