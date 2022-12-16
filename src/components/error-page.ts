@@ -1,4 +1,5 @@
-const errorArea = document.querySelector(".store__project");
+const errorArea = document.querySelector(".main");
+console.log(errorArea)
 
 function renderErrorPage() : void {
   if (errorArea) {
