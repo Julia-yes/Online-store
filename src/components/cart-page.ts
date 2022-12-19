@@ -4,6 +4,6 @@ export function renderCartPage() : void {
   const content = document.querySelector('.main');
   if (content) {
     content.innerHTML = "Cart"
-    console.log(products.getProductById(2))
+    console.log(products)
   }
 }
