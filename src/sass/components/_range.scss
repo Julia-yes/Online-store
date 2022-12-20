@@ -1,20 +1,24 @@
-.range__container {
-  display: flex;
-  flex-direction: column;
-  width: 80%;
-}
-
-.sliders__control {
-  position: relative;
-  min-height: 50px;
-}
-
-.form__control {
-  position: relative;
-  display: flex;
-  justify-content: space-between;
-  font-size: 24px;
-  color: #635a5a;
+.range {
+  &__container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    position: relative;
+  }
+  &__control {
+    &_sliders {
+      position: relative;
+      min-height: 50px;
+      padding-top: 20px;
+    }
+    &_form {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      font-size: 24px;
+      color: #635a5a;
+    }
+  }
 }
 
 input[type=range]::-webkit-slider-thumb {
@@ -61,7 +65,7 @@ input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;
 }
 
-input[type="range"] {
+input[type=range] {
   -webkit-appearance: none; 
   appearance: none;
   height: 2px;

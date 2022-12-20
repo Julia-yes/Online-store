@@ -1,17 +1,18 @@
+import products from '../scripts/data-parser';
 function renderRange(): void {
   const rangePlace = document.querySelector(".filter__range");
   if (rangePlace) {
     rangePlace.innerHTML = `<div class="range__container range">
     <div class="range__control_sliders">
-        <input class = "range__input" id="fromSlider" type="range" value="10" min="0" max="100"/>
-        <input class = "range__input" id="toSlider" type="range" value="40" min="0" max="100"/>
+        <input class = "range__input" id="fromSlider" type="range" value="${products.priceRange.min}" min="${products.priceRange.min}" max=${products.priceRange.max}/>
+        <input class = "range__input" id="toSlider" type="range" value="${products.priceRange.max}" min="${products.priceRange.min}" max=${products.priceRange.max}/>
     </div>
     <div class="range__control_form">
         <div class="form_control_container">
-            <input class="range__input_number form_control_container__time__input" type="number" id="fromInput" value="10" min="0" max="100"/>
+            <input class="range__input_number form_control_container__time__input" type="number" id="fromInput" value="${products.priceRange.min}" min="${products.priceRange.min}" max=${products.priceRange.max}/>
         </div>
         <div class="form_control_container">
-            <input class="range__input_number form_control_container__time__input" type="number" id="toInput" value="40" min="0" max="100"/>
+            <input class="range__input_number form_control_container__time__input" type="number" id="toInput" value="${products.priceRange.max}" min="${products.priceRange.min}" max=${products.priceRange.max}/>
         </div>
     </div>
 </div>`

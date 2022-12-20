@@ -1,0 +1,19 @@
+.goods {
+  width: 70%;
+  &__area {
+    width: 100%;
+  }
+  &__wrapper {
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+  }
+
+  &__options {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+}

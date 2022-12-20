@@ -1,5 +1,5 @@
 import {data} from '../assets/data/data';
-import IFilter from './filter'
+import IFilter from './filter';
 
 interface IProducts {
   products: IProduct[];
@@ -7,7 +7,7 @@ interface IProducts {
   getProductById(id: number): IProduct;
 }
 
-interface IProduct {
+export interface IProduct {
   brand: string;
   category: string;
   description: string;
