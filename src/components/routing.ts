@@ -14,7 +14,6 @@ const routes : { [key: string]: () => void } = {
 export const handleLocation = async() => {
   const path : string = window.location.pathname;
   const route = routes[path] || routes.error;
-  console.log(route)
   route();
 }
 
@@ -22,7 +21,6 @@ const buttons = document.querySelectorAll(".list__item");
 buttons.forEach((element) => {
   element.addEventListener('click', (e) => {
     const path: string = (e.target as HTMLAnchorElement).href;
-    console.log(path);
     e = e || window.event;
     e.preventDefault();
     history.pushState({}, '', path);
