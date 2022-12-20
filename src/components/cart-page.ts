@@ -13,7 +13,7 @@ export function renderCartPage() : void {
     console.log(products);
     // filter.setStock('max', 51);
 
-    products.applyFilter(filter);
+    // products.applyFilter(filter);
     // console.log(products);
   }
 }
