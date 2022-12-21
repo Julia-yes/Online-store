@@ -4,7 +4,7 @@ function renderRange(): void {
   if (rangePlace) {
     rangePlace.innerHTML = `<div class="range__container range">
     <div class="range__control_sliders">
-        <input class = "range__input" id="fromSlider" type="range" value="${products.priceRange.min}" min="${products.priceRange.min}" max=${products.priceRange.max}/>
+        <input class = "range__input range__input_min" id="fromSlider" type="range" value="${products.priceRange.min}" min="${products.priceRange.min}" max=${products.priceRange.max}/>
         <input class = "range__input" id="toSlider" type="range" value="${products.priceRange.max}" min="${products.priceRange.min}" max=${products.priceRange.max}/>
     </div>
     <div class="range__control_form">
@@ -17,6 +17,8 @@ function renderRange(): void {
     </div>
 </div>`
   }
+  let rr = document.querySelector('.range__input_min');
+  rr?.addEventListener('oninput', () => {console.log((rr as HTMLInputElement).value)} )
 }
 
 renderRange();

@@ -65,7 +65,7 @@ input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;
 }
 
-input[type=range] {
+.range__input {
   -webkit-appearance: none; 
   appearance: none;
   height: 2px;

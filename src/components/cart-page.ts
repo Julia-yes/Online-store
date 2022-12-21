@@ -12,10 +12,10 @@ export function renderCartPage() : void {
     filter.switchBrand('Samsung');
     products.applyFilter(filter);
     console.log(products);
-    // filter.setStock('max', 51);
+    filter.setStock('max', 51);
 
-    // products.applyFilter(filter);
-    // console.log(products);
+    products.applyFilter(filter);
+    console.log(products);
     content.innerHTML = "Cart"
   }
 }

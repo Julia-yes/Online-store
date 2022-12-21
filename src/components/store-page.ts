@@ -1,3 +1,5 @@
+import products from "../scripts/data-parser";
+
 export function renderStorePage() : void {
   const content = document.querySelector('.main');
   if (content) {
@@ -33,7 +35,7 @@ export function renderStorePage() : void {
           </div>
         </aside>
         <section class='store__goods goods'>
-          <h2 class='goods__title'>Found: <span class='goods__quantity'></span>
+          <h2 class='goods__title'>Found: ${products.products.length}<span class='goods__quantity'></span>
           </h2>
           <div class='goods__options'>
             <div class='goods__sorters sorters'>

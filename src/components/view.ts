@@ -6,6 +6,9 @@ function changeView(ev: Event) {
     button.classList.remove('view__button_active');
   });
   let activeButton = ev.currentTarget;
-  (activeButton as HTMLElement).classList.add('view__button_active')
+  (activeButton as HTMLElement).classList.add('view__button_active');
+
+  const goodsArea = document.querySelector('.goods__wrapper');
+  goodsArea?.classList.toggle('goods__wrapper_many');
   
 }

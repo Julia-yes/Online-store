@@ -8,12 +8,17 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 10px;
+
+    &_many {
+      grid-template-columns: repeat(6, 1fr);
+    }
   }
 
   &__options {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    padding: 10px 0;
   }
 
 }

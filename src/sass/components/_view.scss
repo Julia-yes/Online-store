@@ -9,7 +9,7 @@
       border: 1px solid transparent;
     }
     &_active {
-      border: 1px solid $red;
+      box-shadow: 0 0 15px 1px $red;
     }
   }
 

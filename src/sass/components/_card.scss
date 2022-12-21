@@ -5,9 +5,10 @@
   align-items: center;
   position: relative;
   border: 1px solid transparent;
+  transition: box-shadow 0.3s;
 
   &:hover {
-    box-shadow: 0 0 15px 3px $red;
+    box-shadow: 0 0 15px 1px $red;
   }
 
   &__thumbnail {
@@ -37,7 +38,7 @@
 
   &__discont {
     position: absolute;
-    bottom: 110px;
+    bottom: 30px;
     background-color: white;
     padding: 2px 5px;
     border-radius: 10px;
@@ -50,6 +51,7 @@
     align-items: center;
     width: 100%;
     gap: 20px;
+    padding-top: 10px;
 
     &_new {
       padding-left: 20px;
@@ -84,12 +86,12 @@
     padding: 10px;
     font-size: 16px;
     font-weight: 600;
-    background-color: $gray-dark;
+    background-color: $gray;
     cursor: pointer;
     transition: background-color .3s;
 
     &:hover {
-      background-color: $gray;
+      background-color: white;
     }
   }
 }
