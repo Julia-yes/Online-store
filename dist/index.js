@@ -546,6 +546,7 @@ function renderStorePage() {
     const content = document.querySelector('.main');
     if (content) {
         content.innerHTML = `
+        content.innerHTML = `
     <article class='store__page store'>
       <div class='store__search search'>
         <div class='search__block'>
@@ -556,6 +557,7 @@ function renderStorePage() {
       <div class='store__main'>
         <aside class='store__filters filter'>
           <div class='filter__item filter__category'>
+          <div class='filter__item filter__category'>
             <div class='filter__title'>Category</div>
             <div class='filter__area filter__category_area'></div>
           </div>
@@ -564,9 +566,11 @@ function renderStorePage() {
             <div class='filter__area filter__brand_area'></div>
           </div>
           <div class='filter__item filter__price'>
+          <div class='filter__item filter__price'>
             <div class='filter__title'>Price</div>
             <div class='filter__area filter__area_range filter__range'></div>
           </div>
+          <div class='filter__item filter__stock'>
           <div class='filter__item filter__stock'>
             <div class='filter__title'>Stock</div>
             <div class='filter__area filter__area_range'></div>
@@ -2686,6 +2690,18 @@ const data = {
 /******/ 	}
 /******/ 	
 /************************************************************************/
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/compat get default export */
 /******/ 	(() => {
 /******/ 		// getDefaultExport function for compatibility with non-harmony modules
