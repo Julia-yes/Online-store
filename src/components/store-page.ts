@@ -30,12 +30,12 @@ export function renderStorePage() : void {
             <div class='filter__area filter__area_range'></div>
           </div>
           <div class='filter__item filter__buttons'>
-            <button class='filter__button button'>Reset filters</button>
-            <button class='filter__button button'>Save filters</button>
+            <button class='filter__button filter__button_reset button'>Reset filters</button>
+            <button class='filter__button filter__button_save button'>Save filters</button>
           </div>
         </aside>
         <section class='store__goods goods'>
-          <h2 class='goods__title'>Found: ${products.products.length}<span class='goods__quantity'></span>
+          <h2 class='goods__title'>Found: <span class='goods__quantity'>${products.products.length}</span>
           </h2>
           <div class='goods__options'>
             <div class='goods__sorters sorters'>
@@ -54,5 +54,12 @@ export function renderStorePage() : void {
         </section>
       </div>
     </article>`
+  }
+}
+
+export function renderGoodsQuantity() {
+  const goodsquantity = document.querySelector('.goods__quantity');
+  if (goodsquantity) {
+    goodsquantity.innerHTML = `${products.products.length}`;
   }
 }

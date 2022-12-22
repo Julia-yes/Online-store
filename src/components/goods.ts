@@ -6,7 +6,7 @@ import {addPathUrl} from './routing';
 
 export function renderGoods() {
   const goodsArea = document.querySelector('.goods__area');
-  const goods = products.getProducts(data.products);
+  const goods = products.products;
   let goodsInner = `<div class='goods__wrapper'>`;
   for (let key in goods) {
     let good = goods[key];
