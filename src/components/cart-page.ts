@@ -1,6 +1,7 @@
 import products from "../scripts/data-parser";
 import Filter from "../scripts/filter";
 
+
 export function renderCartPage() : void {
   const content = document.querySelector('.main');
   if (content) {
@@ -15,5 +16,6 @@ export function renderCartPage() : void {
 
     // products.applyFilter(filter);
     // console.log(products);
+    content.innerHTML = "Cart"
   }
 }

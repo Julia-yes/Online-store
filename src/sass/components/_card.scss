@@ -1,0 +1,97 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  border: 1px solid transparent;
+  transition: box-shadow 0.3s;
+
+  &:hover {
+    box-shadow: 0 0 15px 1px $red;
+  }
+
+  &__thumbnail {
+    width: 100%;
+    height: 0;
+    padding-bottom: 100%;
+    position: relative;
+  }
+
+  &__img {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    object-fit: cover;
+  }
+
+  &__title {
+    position: absolute;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.822);
+    width: 100%;
+    text-align: center;
+    font-size: 26px;
+    color: $red;
+    padding: 10px 0;
+  }
+
+  &__discont {
+    position: absolute;
+    bottom: 30px;
+    background-color: white;
+    padding: 2px 5px;
+    border-radius: 10px;
+    left: 20px;
+  }
+
+  &__price {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    gap: 20px;
+    padding-top: 10px;
+
+    &_new {
+      padding-left: 20px;
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    &_old {
+      font-size: 20px;
+      font-weight: 700;
+      color: $gray-dark;
+      text-decoration: line-through;
+    }
+  }
+
+  &__bottom {
+    padding: 10px 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  &__buttons {
+    padding-bottom: 10px;
+  }
+
+  &__button {
+    color: $red;
+    border: 1px solid $red;
+    border-radius: 15px;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    background-color: $gray;
+    cursor: pointer;
+    transition: background-color .3s;
+
+    &:hover {
+      background-color: white;
+    }
+  }
+}

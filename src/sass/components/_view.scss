@@ -1,0 +1,17 @@
+.view {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+
+  &__button {
+    cursor: pointer;
+    &_img {
+      border: 1px solid transparent;
+    }
+    &_active {
+      box-shadow: 0 0 15px 1px $red;
+    }
+  }
+
+  
+}

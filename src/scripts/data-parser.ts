@@ -1,5 +1,5 @@
 import {data} from '../assets/data/data';
-import IFilter from './filter'
+import IFilter from './filter';
 
 interface IProducts {
   products: IProduct[];
@@ -7,7 +7,7 @@ interface IProducts {
   getProductById(id: number): IProduct;
 }
 
-interface IProduct {
+export interface IProduct {
   brand: string;
   category: string;
   description: string;
@@ -26,11 +26,16 @@ class Products implements IProducts {
   brands: {[key: string]: IProduct[]};
   categories: {[key: string]: IProduct[]};
   priceRange : {min: number, max: number};
+  stockRange : {min: number, max: number};
 
   constructor(data: IProduct[]) {
     this.brands = {};
     this.categories = {};
     this.priceRange = {
+      min: -1,
+      max: -1,
+    };
+    this.stockRange = {
       min: -1,
       max: -1,
     };
@@ -64,6 +69,9 @@ class Products implements IProducts {
       if (this.priceRange.min === -1 || this.priceRange.min > product.price) this.priceRange.min = product.price;
       if (this.priceRange.min === -1 || this.priceRange.max < product.price) this.priceRange.max = product.price;
 
+      if (this.stockRange.min === -1 || this.stockRange.min > product.stock) this.stockRange.min = product.stock;
+      if (this.stockRange.min === -1 || this.stockRange.max < product.stock) this.stockRange.max = product.stock;
+
       if (!(product.brand in this.brands)) {
         this.brands[product.brand] = [product];
       } 
@@ -85,6 +93,10 @@ class Products implements IProducts {
     this.brands = {};
     this.categories = {};
     this.priceRange = {
+      min: -1,
+      max: -1,
+    };
+    this.stockRange = {
       min: -1,
       max: -1,
     };

@@ -29,6 +29,7 @@ class Filter implements IFilter{
   }
 
   switchCategory(item: string) {
+    
     if (this.category.includes(item)) this.category = this.category.filter(el => el !== item);
     else this.category.push(item);
   }
