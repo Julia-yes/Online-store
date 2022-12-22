@@ -26,7 +26,7 @@ export function renderGoods() {
       </div>
       <div class='card__buttons'>
         <button class='card__button card__button_add'>Add to cart</button>
-        <button class='card__button card__button_more'>See more</button>
+        <button class='card__button card__button_more' data-goodID = "${good.id}">See more</button>
       </div>
     </div>`
   }
@@ -34,12 +34,26 @@ export function renderGoods() {
     goodsArea.innerHTML = goodsInner;
   }
   const buttonsToProduct = document.querySelectorAll('.card__button_more');
-  buttonsToProduct.forEach(button => {button.addEventListener('click', () => {
-    addPathUrl('/product');
+  buttonsToProduct.forEach(button => {button.addEventListener('click', (e) => {
+    let goodID = (e.currentTarget as HTMLElement).dataset.goodid;
+    addPathUrl(`/product/${goodID}`);
     renderProductPage();
-  })})
+  })});
+  const buttonCart = document.querySelectorAll(".card__button_add");
+  buttonCart.forEach(button => {
+    button.addEventListener('click', (e) => {changeButtonCart(e.currentTarget as HTMLElement)});
+  })
 }
 
-
+function changeButtonCart(e: Element) {
+  if (e?.innerHTML == "Add to cart") {
+    console.log("!!!")
+    e.innerHTML = "Delete from cart"
+  }
+  else if (e?.innerHTML == "Delete from cart") {
+    console.log("##")
+    e.innerHTML = "Add to cart"
+  }
+}
 
 renderGoods();

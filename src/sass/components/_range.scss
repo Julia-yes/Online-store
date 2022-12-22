@@ -21,7 +21,7 @@
   }
 }
 
-input[type=range]::-webkit-slider-thumb {
+.range__input::-webkit-slider-thumb {
   -webkit-appearance: none;
   pointer-events: all;
   width: 24px;
@@ -32,7 +32,7 @@ input[type=range]::-webkit-slider-thumb {
   cursor: pointer;
 }
 
-input[type=range]::-moz-range-thumb {
+.range__input::-moz-range-thumb {
   //-webkit-appearance: none;
   pointer-events: all;
   width: 24px;
@@ -43,25 +43,17 @@ input[type=range]::-moz-range-thumb {
   cursor: pointer;  
 }
 
-input[type=range]::-webkit-slider-thumb:hover {
+.range__input::-webkit-slider-thumb:hover {
   background: #f7f7f7;
 }
 
-input[type=range]::-webkit-slider-thumb:active {
+.range__input::-webkit-slider-thumb:active {
   box-shadow: inset 0 0 3px $red, 0 0 9px $red;
   -webkit-box-shadow: inset 0 0 3px $red, 0 0 9px $red;
 }
 
-input[type=number] {
-  color: #8a8383;
-  width: 50px;
-  height: 30px;
-  font-size: 20px;
-  border: none;
-}
-
-input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button {  
+.range__input_number::-webkit-inner-spin-button, 
+.range__input_number::-webkit-outer-spin-button {  
   -webkit-appearance: none;
 }
 
@@ -73,13 +65,17 @@ input[type=number]::-webkit-outer-spin-button {
   position: absolute;
   background-color: #C6C6C6;
   pointer-events: none;
-}
 
-#fromSlider {
-  height: 0;
-  z-index: 1;
-}
-#fromSlider {
-  height: 0;
-  z-index: 1;
+  &_min {
+    height: 0;
+    z-index: 1;
+  }
+
+  &_number {
+    color: #8a8383;
+    width: 50px;
+    height: 30px;
+    font-size: 20px;
+    border: none;
+  }
 }

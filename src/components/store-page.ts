@@ -23,11 +23,11 @@ export function renderStorePage() : void {
           </div>
           <div class='filter__item filter__price'>
             <div class='filter__title'>Price</div>
-            <div class='filter__area filter__area_range filter__range'></div>
+            <div class='filter__area filter__area_range filter__range_price'></div>
           </div>
           <div class='filter__item filter__stock'>
             <div class='filter__title'>Stock</div>
-            <div class='filter__area filter__area_range'></div>
+            <div class='filter__area filter__area_range filter__range_stock'></div>
           </div>
           <div class='filter__item filter__buttons'>
             <button class='filter__button filter__button_reset button'>Reset filters</button>
