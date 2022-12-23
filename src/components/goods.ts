@@ -8,7 +8,6 @@ export function renderGoods() {
   const goodsArea = document.querySelector('.goods__area');
   const goods = products.products;
   let goodsInner = `<div class='goods__wrapper'>`;
-  console.log("!!!", goods.length)
   if (goods.length == 0) {
     goodsInner += `<div class='goods__empty'> No products found </div>`
   }
@@ -53,11 +52,9 @@ export function renderGoods() {
 
 function changeButtonCart(e: Element) {
   if (e?.innerHTML == "Add to cart") {
-    console.log("!!!")
     e.innerHTML = "Delete from cart"
   }
   else if (e?.innerHTML == "Delete from cart") {
-    console.log("##")
     e.innerHTML = "Add to cart"
   }
 }

@@ -35,15 +35,14 @@ export function renderStorePage() : void {
           </div>
         </aside>
         <section class='store__goods goods'>
-          <h2 class='goods__title'>Found: <span class='goods__quantity'>${products.products.length}</span>
-          </h2>
           <div class='goods__options'>
             <div class='goods__sorters sorters'>
-              <button class='sorters__button sorters__price sorters__price_low'>price &#8595;</button>
-              <button class='sorters__button sorters__price sorters__price_high'>price &#8593;</button>
-              <button class='sorters__button sorters__rating sorters__rating_low'>rating &#8595;</button>
-              <button class='sorters__button sorters__rating sorters__rating_high'>rating &#8593;</button>
+              <button class='sorters__button sorters__price sorters__price_low' data-option = "price" data-direction="min">price &#8595;</button>
+              <button class='sorters__button sorters__price sorters__price_high' data-option = "price" data-direction="max">price &#8593;</button>
+              <button class='sorters__button sorters__rating sorters__rating_low' data-option = "rating" data-direction="min">rating &#8595;</button>
+              <button class='sorters__button sorters__rating sorters__rating_high' data-option = "rating" data-direction="max">rating &#8593;</button>
             </div>
+            <h2 class='goods__title'>Found: <span class='goods__quantity'>${products.products.length}</span></h2>
             <div class='goods__view view'>
               <div class='view__button'><img alt='grid' class='view__button_img view__button_many' src='../src/assets/img/003-grid-1.png'></div>
               <div class='view__button'><img alt='grid' class='view__button_active view__button_img view__button_few' src='../src/assets/img/004-menu-1.png'></div>
