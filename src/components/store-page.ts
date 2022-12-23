@@ -37,10 +37,10 @@ export function renderStorePage() : void {
         <section class='store__goods goods'>
           <div class='goods__options'>
             <div class='goods__sorters sorters'>
-              <button class='sorters__button sorters__price sorters__price_low' data-option = "price" data-direction="min">price &#8595;</button>
-              <button class='sorters__button sorters__price sorters__price_high' data-option = "price" data-direction="max">price &#8593;</button>
-              <button class='sorters__button sorters__rating sorters__rating_low' data-option = "rating" data-direction="min">rating &#8595;</button>
-              <button class='sorters__button sorters__rating sorters__rating_high' data-option = "rating" data-direction="max">rating &#8593;</button>
+              <button class='button sorters__button sorters__price sorters__price_low' data-option = "price" data-direction="min">price &#8595;</button>
+              <button class='button sorters__button sorters__price sorters__price_high' data-option = "price" data-direction="max">price &#8593;</button>
+              <button class='button sorters__button sorters__rating sorters__rating_low' data-option = "rating" data-direction="min">rating &#8595;</button>
+              <button class='button sorters__button sorters__rating sorters__rating_high' data-option = "rating" data-direction="max">rating &#8593;</button>
             </div>
             <h2 class='goods__title'>Found: <span class='goods__quantity'>${products.products.length}</span></h2>
             <div class='goods__view view'>
