@@ -17,8 +17,8 @@ export function renderGoods() {
       </div>
       <div class='card__title'>${good.title}</div>
       <div class='card__price'>
-        <div class='card__price_new'>${Math.floor(good.price * (100 - good.discountPercentage) / 100)}&#36;</div>
-        <div class='card__price_old'>${good.price}&#36;</div>
+        <div class='card__price_new'>${good.price}&#36;</div>
+        <div class='card__price_old'>${Math.floor(good.price / (100 - good.discountPercentage) * 100)}&#36;</div>
       </div>
       <div class='card__bottom'>
         <div class='card__rating'>${good.rating}&starf;</div>

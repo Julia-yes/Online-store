@@ -10,3 +10,4 @@ import './components/filterItem';
 import './components/goods';
 import './components/view';
 import './components/search';
+import './components/sorting';

@@ -1,23 +1,28 @@
 import products from '../scripts/data-parser';
+import {changeFilters} from './filterItem';
 
-function renderRange(prop: string, min: number, max: number): void {
+function renderRange(prop: string, min: number, max: number, minValue: number, maxValue: number): void {
   const rangePlace = document.querySelector(`.filter__range_${prop}`);
   if (rangePlace) {
     rangePlace.innerHTML = `<div class="range__container range">
       <div class="range__control_sliders">
-          <input class = "range__input range__input_min" id="fromSlider${prop}" type="range" value="${min}" min="${min}" max="${max}"/>
-          <input class = "range__input range__input_max" id="toSlider${prop}" type="range" value="${max}" min="${min}" max="${max}"/>
+          <input class = "range__input range__input_min" id="fromSlider${prop}" type="range" value="${minValue}" min="${min}" max="${max}" data-param="${prop}" data-side ="min"/>
+          <input class = "range__input range__input_max" id="toSlider${prop}" type="range" value="${maxValue}" min="${min}" max="${max}" data-param="${prop}" data-side ="max"/>
       </div>
       <div class="range__control_form">
           <div class="form_control_container">
-              <input class="range__input_number form_control_container__time__input" type="number" id="fromInput${prop}" value="${min}" min="${min}" max=${max}/>
+              <input class="range__input_number" type="number" id="fromInput${prop}" value="${minValue}" min="${min}" max=${max}/>
           </div>
           <div class="form_control_container">
-              <input class="range__input_number form_control_container__time__input" type="number" id="toInput${prop}" value="${max}" min="${min}" max=${max}/>
+              <input class="range__input_number" type="number" id="toInput${prop}" value="${maxValue}" min="${min}" max=${max}/>
           </div>
       </div>
     </div>`
   }
+  const range = document.querySelectorAll('.range__input');
+  range.forEach(item => {
+    item.addEventListener('change', e => {changeFilters(e)})
+  })
 }
 
 function addRangeFunctionality(prop: string): void {
@@ -118,17 +123,19 @@ function addRangeFunctionality(prop: string): void {
   }
 }
 
-renderRange("price", products.priceRange.min, products.priceRange.max);
-renderRange("stock", products.stockRange.min, products.stockRange.max);
-addRangeFunctionality("price");
-addRangeFunctionality("stock");
+export function changePriceRange() {
+  renderRange("price", 10, 1749, products.priceRange.min, products.priceRange.max);
+  addRangeFunctionality("price");
+}
 
-// function showRange() {
-//   const rangeMin = document.querySelector('.range__input_min');
-//   const rangeMax = document.querySelector('.range__input_max');
-//   console.log(rangeMax)
-//   console.log(rangeMin.value)
-//   console.log(rangeMax.value)
-// }
+export function changeStockRange() {
+  renderRange("stock", 2, 150, products.stockRange.min, products.stockRange.max);
+  addRangeFunctionality("stock");
+}
 
-// showRange() 
+export function changeRange() {
+  changePriceRange();
+  changeStockRange();
+}
+
+changeRange()
