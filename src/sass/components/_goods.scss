@@ -3,11 +3,21 @@
   &__area {
     width: 100%;
   }
+
+  &__empty {
+    font-size: 36px;
+    text-align: center;
+    color: $red;
+    position: absolute;
+    left: 40%;
+  }
+
   &__wrapper {
     box-sizing: border-box;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 10px;
+    position: relative;
 
     &_many {
       grid-template-columns: repeat(6, 1fr);
