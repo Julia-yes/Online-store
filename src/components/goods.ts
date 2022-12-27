@@ -1,5 +1,4 @@
 import products from '../scripts/data-parser';
-import { data } from '../assets/data/data';
 import {renderProductPage} from './product-page';
 import {addPathUrl} from './routing';
 
@@ -7,7 +6,7 @@ import {addPathUrl} from './routing';
 export function renderGoods() {
   const goodsArea = document.querySelector('.goods__area');
   const goods = products.products;
-  let goodsInner = `<div class='goods__wrapper'>`;
+  let goodsInner = ``;
   if (goods.length == 0) {
     goodsInner += `<div class='goods__empty'> No products found </div>`
   }
@@ -58,5 +57,3 @@ function changeButtonCart(e: Element) {
     e.innerHTML = "Add to cart"
   }
 }
-
-renderGoods();

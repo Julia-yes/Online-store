@@ -1,12 +1,15 @@
 import products from "../scripts/data-parser";
 import {renderGoods} from "./goods";
+import {insertParam} from './routing'
 
-function addListenerSortingButtons() {
+export function addListenerSortingButtons() {
   const buttonSort = document.querySelectorAll('.sorters__button');
   buttonSort.forEach(button => {
     button.addEventListener('click', (e) => {
       sortGoods(e);
-      changeActiveButton(e)})
+      changeActiveButton(e);
+      insertParam("sort", `${(e.currentTarget as HTMLElement).dataset.option  as string}-${(e.currentTarget as HTMLElement).dataset.direction  as string}` );
+    })
   })
 }
 
@@ -18,10 +21,9 @@ function changeActiveButton(event: Event) {
   (event.currentTarget as HTMLElement).classList.add("sorters__button_active")
 }
 
-function sortGoods(event: Event) {
-  let option = (event.currentTarget as HTMLElement).dataset.option;
-  let direction = (event.currentTarget as HTMLElement).dataset.direction;
-  console.log(option, direction)
+function sortGoods(event?: Event, opt?: string, dir?: string) {
+  let option = event? (event.currentTarget as HTMLElement).dataset.option : opt;
+  let direction = event? (event.currentTarget as HTMLElement).dataset.direction : dir;
   if (option == "price") {
     if (direction == "min") {
       products.products.sort(function(el1, el2) {
@@ -49,5 +51,9 @@ function sortGoods(event: Event) {
   renderGoods()
 }
 
-
-addListenerSortingButtons()
+export function makeSorting(prop: string) {
+  let arr = prop.split('-');
+  sortGoods(undefined, arr[0], arr[1]);
+  const activeButton = document.querySelector(`[data-option="${arr[0]}"][data-direction="${arr[1]}"]`);
+  activeButton?.classList.add("sorters__button_active");
+}

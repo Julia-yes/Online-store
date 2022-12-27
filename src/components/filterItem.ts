@@ -3,6 +3,7 @@ import Filter from '../scripts/filter';
 import {renderGoods} from './goods';
 import {renderGoodsQuantity} from './store-page';
 import {changeRange, changePriceRange, changeStockRange} from './range';
+import {insertParam} from "./routing";
 
 function renderCategories(): void {
   const categoriesArea = document.querySelector('.filter__category_area');
@@ -11,9 +12,9 @@ function renderCategories(): void {
   
   for (let key in categories) {
     categoryInner += `<div class='filter__string'>
-      <input type = 'checkbox' class='filter__checkbox' value="${key}" data-param = 'category'>
+      <input type = 'checkbox' class='filter__checkbox filter__checkbox_category' value="${key}" name="${key}" data-param = 'category' data-quantity="${categories[key].length}">
       <div class='category__title'>${key}&ensp;</div>
-      <div class='category__quantity' data-param ="${key}">(${categories[key].length})</div>
+      <div class='category__quantity filter__quantity' data-param ="${key}">(${categories[key].length})</div>
     </div>`
   }
 
@@ -30,9 +31,9 @@ function renderBrands() : void {
   
   for (let key in brands) {
     brandsInner += `<div class='filter__string'>
-      <input type = 'checkbox' class='filter__checkbox' value="${key}" data-param = 'brand'>
+      <input type = 'checkbox' class='filter__checkbox filter__checkbox_brand' value="${key}" name="${key}" data-param = 'brand' data-quantity="${brands[key].length}">
       <div class='brand__title'>${key}&ensp;</div>
-      <div class='brand__quantity' data-param ="${key}">(${brands[key].length})</div>
+      <div class='brand__quantity filter__quantity' data-param ="${key}">(${brands[key].length})</div>
     </div>`
   }
 
@@ -42,20 +43,50 @@ function renderBrands() : void {
   }
 }
 
+export function tickCheckboxes() {  
+  if(filter.brand.length > 0) {
+    const brandCheckboxs = document.querySelectorAll(".filter__checkbox_brand");
+    brandCheckboxs.forEach(item => {
+      for (let i =0; i < filter.brand.length; i++) {
+        if ((item as HTMLInputElement).value == filter.brand[i]) {
+          (item as HTMLInputElement).checked = true;
+        }
+      }
+    })
+
+  }
+  if(filter.category.length > 0) {
+    const brandCheckboxs = document.querySelectorAll(".filter__checkbox_category");
+    brandCheckboxs.forEach(item => {
+      for (let i =0; i < filter.category.length; i++) {
+        if ((item as HTMLInputElement).value == filter.category[i]) {
+          (item as HTMLInputElement).checked = true;
+        }
+      }
+    })
+  }
+}
+
 function addFilterParams() {
   const checkboxs = document.querySelectorAll('.filter__checkbox');
-  
   checkboxs.forEach(checkbox => {
-    checkbox.addEventListener('click', e => {changeFilters(e)})
+    checkbox.addEventListener('click', e => {
+      changeFilters(e);
+    })
   })
 }
 
 function addEvents() {
   const buttonReset = document.querySelector('.filter__button_reset');
   buttonReset?.addEventListener('click', resetFilters);
+  const buttonSave = document.querySelector('.filter__button_save');
+  buttonSave?.addEventListener('click', () => {
+    saveUrl();
+    changeSaveButton();
+  });
 }
 
-interface IselectedFilters {
+export interface IselectedFilters {
   category: string[];
   brand: string[];
   price: { min: number | null; max: number | null; };
@@ -79,9 +110,9 @@ let filter: IselectedFilters = {
 export function changeFilters(event: Event) : void {
   let param : string | undefined = (event.currentTarget as HTMLElement).dataset.param;
   let newFilter: string | number = (event.currentTarget as HTMLInputElement).value;
+  let side = (event.currentTarget as HTMLElement).dataset.side;
   if (param) {
     if (param === "price" || param === "stock") {
-      let side = (event.currentTarget as HTMLElement).dataset.side;
       if (side !== undefined) {
         if (side === 'min') {
           (filter[param as keyof IselectedFilters]as unknown as { min: number | null; max: number | null;}).min = Number(newFilter);
@@ -103,6 +134,12 @@ export function changeFilters(event: Event) : void {
   }
   if (param) {
     runFiltration(param);
+  }
+  if(param === "price" || param === "stock") {
+    insertParam(`${param}-${side}`, newFilter);
+  }
+  else {
+    insertParam(param, newFilter);
   }
 }
 
@@ -144,6 +181,11 @@ function runFiltration(prop: string | null) {
   renderGoods();
   rerenderGoodsQuantity();
   renderGoodsQuantity();
+}
+
+export function changeMainFilter(filt: IselectedFilters) {
+  filter = filt;
+  runFiltration(null);
 }
 
 function changeRangePoints(prop: string) {
@@ -208,14 +250,32 @@ function resetFilters() {
   });
   filter = filterNull;
   runFiltration(null);
+  document.location.search = "";
 }
 
-function renderFilters() {
+function saveUrl() {
+  const url = document.location.href;
+  navigator.clipboard.writeText(url)
+  .then(() => {
+  })
+  .catch(err => {
+    console.log('Something went wrong', err);
+  });
+}
+
+function changeSaveButton() {
+  const button = document.querySelector(".filter__button_save");
+  if (!button) return;
+    button.innerHTML = "Saved";
+    setTimeout(() => {
+      button.innerHTML = "Save filters";
+    }, 2000);
+}
+
+export function renderFilters() {
   renderCategories();
   renderBrands();
   addFilterParams();
   addEvents();
-  
 }
 
-renderFilters()

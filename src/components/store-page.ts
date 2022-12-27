@@ -44,8 +44,8 @@ export function renderStorePage() : void {
             </div>
             <h2 class='goods__title'>Found: <span class='goods__quantity'>${products.products.length}</span></h2>
             <div class='goods__view view'>
-              <div class='view__button'><img alt='grid' class='view__button_img view__button_many' src='../src/assets/img/003-grid-1.png'></div>
-              <div class='view__button'><img alt='grid' class='view__button_active view__button_img view__button_few' src='../src/assets/img/004-menu-1.png'></div>
+              <div class='view__button'><img alt='grid' class='view__button_img view__button_many' src='../src/assets/img/003-grid-1.png' data-view = "many"></div>
+              <div class='view__button'><img alt='grid' class='view__button_active view__button_img view__button_few' src='../src/assets/img/004-menu-1.png' data-view = "few"></div>
             </div>
           </div>
           <div class='goods__area'>
