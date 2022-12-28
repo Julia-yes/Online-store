@@ -1,4 +1,11 @@
-import {handleLocation} from './routing';
+import {handleLocation, parseUrl} from './routing';
+import {renderGoods} from './goods';
+import {renderFilters} from './filterItem';
+import {changeRange, fillValues} from "./range";
+import {runSearch} from './search';
+import {addListenerSortingButtons} from "./sorting";
+import {addListenerForView} from './view';
+
 
 const templateArea = document.querySelector(".store__project");
 
@@ -21,6 +28,15 @@ function renderTemplate() : void {
 function initProject() : void {
   renderTemplate();
   handleLocation();
+  renderGoods();
+  renderFilters();
+  fillValues();
+  changeRange();
+  parseUrl();
+  runSearch();
+  addListenerSortingButtons();
+  addListenerForView();
+  
 }
 
 initProject()
