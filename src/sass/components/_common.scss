@@ -7,14 +7,19 @@ body {
 }
 
 .wrapper {
-  padding: 10px;
+  padding: 10px 30px;
+}
+
+.wrapper__main {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  width: 100%;
 }
 
 .main {
   flex-grow: 1;
   height: 100%;
+  padding-top: 20px;
 }
 
