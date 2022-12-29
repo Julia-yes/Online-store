@@ -1,5 +1,6 @@
 @import './sass/abstracts/_constants.scss';
 @import './sass/base/_reset.scss';
+@import './sass/components/_common.scss';
 @import './sass/components/_button.scss';
 @import './sass/components/_search.scss';
 @import './sass/components/_range.scss';
@@ -9,6 +10,7 @@
 @import './sass/components/_goods.scss';
 @import './sass/components/_view.scss';
 @import './sass/components/_card.scss';
+@import './sass/components/_error.scss';
 @import './sass/components/_sorters.scss';
 @import './sass/layout/_footer.scss';
 @import './sass/layout/_store.scss';
