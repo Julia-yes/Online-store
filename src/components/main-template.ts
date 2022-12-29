@@ -5,6 +5,8 @@ import {changeRange, fillValues} from "./range";
 import {runSearch} from './search';
 import {addListenerSortingButtons} from "./sorting";
 import {addListenerForView} from './view';
+import {renderHeader} from './header';
+import {renderFooter} from "./footer";
 
 
 const templateArea = document.querySelector(".store__project");
@@ -12,7 +14,7 @@ const templateArea = document.querySelector(".store__project");
 function renderTemplate() : void {
   if (templateArea) {
     templateArea.innerHTML = `
-    <div class = 'wrapper'>
+    <div class = 'wrapper__main'>
       <header class = 'header'>Header
         <a href='/'>Logo</a>
         <a href='/cart'>Cart</a>
@@ -36,6 +38,8 @@ function initProject() : void {
   runSearch();
   addListenerSortingButtons();
   addListenerForView();
+  renderHeader();
+  renderFooter();
   
 }
 
