@@ -1,57 +1,62 @@
+footer {
+  background-color: $gray-background;
+  border-top: 4px solid $red;
+  border-radius: 25px 25px 0 0;
+}
+
 .footer {
-  padding: 10px 0;
-  display: flex;
-  flex-direction: row;
-  color: white;
-  justify-content: space-between;
-  align-items: center;
+  &__inner {
+    padding: 10px 0;
+    display: flex;
+    flex-direction: row;
+    color: $red;
+    justify-content: space-between;
+    align-items: center;
+    
+  }
+
+  &__left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  &__link {
+    color: white;
+    text-decoration: none;
+    font-size: 22px;
+    font-weight: 700;
+  }
+
+  &__school {
+    cursor: pointer;
+    border-radius: 30px;
+    background-color: white;
+    padding: 5px 10px;
+    margin-left: 50px;
+  }
+
+  &__school-img {
+    width: 100px;
+  }
+
+  &__year {
+    font-size: 24px;
+    font-weight: 700;
+  }
+
+  &__text {
+    font-size: 24px;
+    font-weight: 700;
+  }
 }
 
-.footer__link {
-  color: #30c5ff;
-}
-
-.footer__left {
-  display: flex;
-  flex-direction: column;
-}
-
-.footer__author {
-  display: flex;
-  flex-direction: row;
-}
-
-.footer__text {
-  padding-right: 5px;
-}
-
-.footer__school {
-  cursor: pointer;
-  border-radius: 30px;
-  background-color: white;
-  padding: 5px 10px;
-  margin-left: 50px;
-}
-
-.footer__school-img {
-  width: 100px;
-}
 
 
-.footer__year {
-  text-align: center;
-}
-footer .copyright {
-  font-size: 14px;
-  color: #333;
-  text-align: center;
-}
-footer .copyright a {
-  color: #444;
-}
-footer .copyright a:hover {
-  color: #555;
-}
-footer .copyright:before {
-  content: '©';
-}
+
+
+
+
+
+

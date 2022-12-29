@@ -5,6 +5,8 @@ import {changeRange, fillValues} from "./range";
 import {runSearch} from './search';
 import {addListenerSortingButtons} from "./sorting";
 import {addListenerForView} from './view';
+import {renderHeader} from './header';
+import {renderFooter} from "./footer";
 
 
 const templateArea = document.querySelector(".store__project");
@@ -36,6 +38,8 @@ function initProject() : void {
   runSearch();
   addListenerSortingButtons();
   addListenerForView();
+  renderHeader();
+  renderFooter();
   
 }
 
