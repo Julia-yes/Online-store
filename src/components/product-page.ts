@@ -1,32 +1,32 @@
 import products from "../scripts/data-parser";
 import { IProduct } from "../scripts/data-parser";
 
-let product: IProduct;
 let content: HTMLDivElement | null;
 
 export function renderProductPage() : void {
   const productId = +window.location.pathname.split('/')[2];
   console.log(productId);
-  product = products.getProductById(productId);
-  content = document.querySelector('.main');
-  console.log(product);
-  renderCrumbs();
-  renderProduct();
-  renderPurchase();
+  const product = products.getProductById(productId);
+  if (product) {
+    content = document.querySelector('.main');
+    renderCrumbs(product);
+    renderProduct(product);
+    renderPurchase(product);
+  }
 }
 
-function renderCrumbs() {
+function renderCrumbs(product: IProduct) {
   const crumbsBlock = createNode('crumbs');
   const storeCrumb = createNode('crumb', "Store");
-  const categoryCrumb = createNode('crumb', product.category);
-  const brandCrumb = createNode('crumb', product.brand);
-  const titleCrumb = createNode('crumb', product.title);
+  const categoryCrumb = createNode('crumb', product?.category);
+  const brandCrumb = createNode('crumb', product?.brand);
+  const titleCrumb = createNode('crumb', product?.title);
 
   crumbsBlock.append(storeCrumb, categoryCrumb, brandCrumb, titleCrumb);
   content?.append(crumbsBlock);
 }
 
-function renderProduct() {
+function renderProduct(product: IProduct) {
   const productBlock = createNode('product');
 
   const photosBlock = createNode('photos');
@@ -66,7 +66,7 @@ function renderProduct() {
   content?.append(productBlock);
 }
 
-function renderPurchase() {
+function renderPurchase(product: IProduct) {
   const purchaseBlock = createNode('purchase');
 
   const priceBlock = createNode('price');
