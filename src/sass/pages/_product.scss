@@ -1,0 +1,53 @@
+.crumbs {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 2% 25%;
+}
+
+.product {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 5% 15%;
+
+  .photos {
+    width: 50%;
+
+    .main-photo__img {
+      width: 50%;
+    }
+
+    .small-photos {
+      display: flex;
+      width: 40%;
+
+      .small-photo {
+        width: 10%;
+      }
+
+    }
+  }
+
+  .data {
+    text-transform: capitalize;
+    width: 50%;
+
+    .data__title {
+      text-align: center;
+    }
+
+    .data__description {
+      margin: 2% 0;
+    }
+
+    .data__category {
+      margin: 2% 0;
+    }
+
+  }
+}
+
+.purchase {
+  display: flex;
+  justify-content: space-between;
+  margin: 10% 25%;
+}
