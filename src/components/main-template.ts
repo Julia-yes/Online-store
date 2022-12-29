@@ -12,7 +12,7 @@ const templateArea = document.querySelector(".store__project");
 function renderTemplate() : void {
   if (templateArea) {
     templateArea.innerHTML = `
-    <div class = 'wrapper'>
+    <div class = 'wrapper__main'>
       <header class = 'header'>Header
         <a href='/'>Logo</a>
         <a href='/cart'>Cart</a>

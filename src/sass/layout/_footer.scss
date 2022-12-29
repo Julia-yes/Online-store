@@ -1,0 +1,57 @@
+.footer {
+  padding: 10px 0;
+  display: flex;
+  flex-direction: row;
+  color: white;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer__link {
+  color: #30c5ff;
+}
+
+.footer__left {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer__author {
+  display: flex;
+  flex-direction: row;
+}
+
+.footer__text {
+  padding-right: 5px;
+}
+
+.footer__school {
+  cursor: pointer;
+  border-radius: 30px;
+  background-color: white;
+  padding: 5px 10px;
+  margin-left: 50px;
+}
+
+.footer__school-img {
+  width: 100px;
+}
+
+
+.footer__year {
+  text-align: center;
+}
+footer .copyright {
+  font-size: 14px;
+  color: #333;
+  text-align: center;
+}
+footer .copyright a {
+  color: #444;
+}
+footer .copyright a:hover {
+  color: #555;
+}
+footer .copyright:before {
+  content: '©';
+}
