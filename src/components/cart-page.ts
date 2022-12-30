@@ -8,8 +8,9 @@ export function renderCartPage() : void {
     content.innerHTML = "Cart";
     console.log(products);
     const filter = new Filter();
-    filter.switchBrand('Apple');
-    filter.switchBrand('Samsung');
+    // filter.switchBrand('Apple');
+    // filter.switchBrand('Samsung');
+    filter.setStringSearch('iphone')
     products.applyFilter(filter);
     console.log(products);
     // filter.setStock('max', 51);

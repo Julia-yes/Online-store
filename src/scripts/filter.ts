@@ -15,6 +15,8 @@ class Filter implements IFilter{
   brand: string[];
   price: { min: number; max: number; };
   stock: { min: number; max: number; };
+  stringSearch: string;
+
   constructor() {
     this.category = [];
     this.brand = [];
@@ -26,6 +28,7 @@ class Filter implements IFilter{
       min: -1,
       max: -1,
     };
+    this.stringSearch = '';
   }
 
   switchCategory(item: string) {
@@ -46,6 +49,11 @@ class Filter implements IFilter{
   setStock(parameter: 'min' | 'max', value: number) {
     if (parameter === 'min') this.stock.min = value;
     else this.stock.max = value;
+  }
+
+  setStringSearch(value: string | number) {
+    if (typeof value === 'number') value = value.toString();
+    this.stringSearch = value;
   }
 }
 
