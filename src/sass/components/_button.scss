@@ -1,13 +1,15 @@
 .button {
-  background-color: white;
+  background-color: $red;
+  color: white;
   border: 1px solid $red;
-  border-radius: 5px;
-  transition: background-color 0.3s;
+  border-radius: 10px;
   cursor: pointer;
   padding: 5px 10px;
   font-size: 18px;
+  transition: color .3s, background-color .3s;
 
   &:hover {
-    background-color: $red-light;
+    background-color: white;
+    color: $red;
   }
 }

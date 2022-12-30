@@ -7,6 +7,7 @@ import {addListenerSortingButtons} from "./sorting";
 import {addListenerForView} from './view';
 import {renderHeader} from './header';
 import {renderFooter} from "./footer";
+import {addListenerButtonBuy} from "./modal-page";
 
 
 const templateArea = document.querySelector(".store__project");
@@ -30,6 +31,7 @@ function renderTemplate() : void {
 function initProject() : void {
   renderTemplate();
   handleLocation();
+  addListenerButtonBuy();
   renderGoods();
   renderFilters();
   fillValues();
