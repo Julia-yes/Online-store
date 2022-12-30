@@ -4,7 +4,7 @@ import IFilter from './filter';
 interface IProducts {
   products: IProduct[];
   getProducts(data: IProduct[]): void;
-  getProductById(id: number): IProduct;
+  getProductById(id: number): IProduct | undefined;
 }
 
 export interface IProduct {
@@ -85,7 +85,9 @@ class Products implements IProducts {
   }
 
   getProductById(id: number) {
-    return this.products[id - 1];
+    for (const product of this.products) {
+      if (product.id === id) return product;
+    }
   }
 
   applyFilter(filter: IFilter) {

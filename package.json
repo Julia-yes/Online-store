@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack",
     "watch": "webpack --watch",
-    "style": "sass --watch ./src/sass/main.scss ./dist/style.css"
+    "style": "sass --watch ./src/index.scss ./dist/style.css"
   },
   "repository": {
     "type": "git",
