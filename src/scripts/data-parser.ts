@@ -90,6 +90,28 @@ class Products implements IProducts {
     }
   }
 
+  searchProductsByString(inputValue: string) {
+    const nonInformativeKeys = ['id', 'thumbnail', 'images']
+    for (let ind = 0; ind < this.products.length; ind++) {
+      const product = this.products[ind];
+      let isValueFound = false;
+      for (let [key, value] of Object.entries(product)) {
+        if (typeof value === 'number') value = '' + value;
+        if (nonInformativeKeys.includes(key)) continue;
+        console.log(product, value);
+        
+        if (value.toLowerCase().includes(inputValue.toLowerCase())) {
+          isValueFound = true;
+          break;
+        }
+      }
+      if (!isValueFound) {
+        this.products.splice(ind, 1);
+        ind--;
+      }
+    }
+  }
+
   applyFilter(filter: IFilter) {
     this.products = this.getProducts(data.products);
     this.brands = {};
@@ -102,6 +124,8 @@ class Products implements IProducts {
       min: -1,
       max: -1,
     };
+
+    const nonInformativeKeys = ['id', 'thumbnail', 'images'];
 
     for (let ind = 0; ind < this.products.length; ind++) {
       const el = this.products[ind];
@@ -142,6 +166,24 @@ class Products implements IProducts {
       if (filter.stock.max !== -1 && el.stock > filter.stock.max) {
         removeItem();
         continue;
+      }
+
+      if (filter.stringSearch.length) {
+        let isValueFound = false;
+        for (let [key, value] of Object.entries(el)) {
+          if (typeof value === 'number') value = '' + value;
+          if (nonInformativeKeys.includes(key)) continue;
+          
+          if (value.toLowerCase().includes(filter.stringSearch.toLowerCase())) {
+            isValueFound = true;
+            console.log(el)
+            break;
+          }
+        }
+        if (!isValueFound) {
+          this.products.splice(ind, 1);
+          ind--;
+        }
       }
     }
 
