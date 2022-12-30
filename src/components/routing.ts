@@ -6,25 +6,24 @@ import {IselectedFilters, changeMainFilter, tickCheckboxes} from './filterItem';
 import {makeSorting} from './sorting';
 import {applyView} from "./view";
 
-
 const url = document.location.href;
 
 const routes : { [key: string]: () => void } = {
-  '/' : renderStorePage,
-  '/product' : renderProductPage,
-  '/cart' : renderCartPage,
+  '' : renderStorePage,
+  'product' : renderProductPage,
+  'cart' : renderCartPage,
   'error' : renderErrorPage,
 };
 
 export const handleLocation = async() => {
-  const path : string = window.location.pathname;
+  const path : string = window.location.pathname.split('/')[1];
   const route = routes[path] || routes.error;
   route();
 }
 
 export function addPathUrl(prop:string) {
-   history.pushState({}, '', prop);
-    handleLocation();
+  history.pushState({}, '', prop);
+  handleLocation();
 }
 
 export async function parseUrl() {
@@ -82,6 +81,7 @@ export async function parseUrl() {
       sort = arr[1];
     }
   })
+  console.log(filter)
   await changeMainFilter(filter);
   makeSorting(sort);
   applyView(view);

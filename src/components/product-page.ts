@@ -4,11 +4,15 @@ import { IProduct } from "../scripts/data-parser";
 let content: HTMLDivElement | null;
 
 export function renderProductPage() : void {
+  console.log(window.location)
   const productId = +window.location.pathname.split('/')[2];
   console.log(productId);
   const product = products.getProductById(productId);
   if (product) {
     content = document.querySelector('.main');
+    if (content) {
+      content.innerHTML = '';
+    }
     renderCrumbs(product);
     renderProduct(product);
     renderPurchase(product);
