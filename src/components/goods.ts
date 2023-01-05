@@ -1,6 +1,7 @@
 import products from '../scripts/data-parser';
 import {renderProductPage} from './product-page';
 import {addPathUrl} from './routing';
+import {addListenerButtonBuy} from "./modal-page";
 
 
 export function renderGoods() {
@@ -42,6 +43,7 @@ export function renderGoods() {
     let goodID = (e.currentTarget as HTMLElement).dataset.goodid;
     addPathUrl(`/product/${goodID}`);
     renderProductPage();
+    addListenerButtonBuy();
   })});
   const buttonCart = document.querySelectorAll(".card__button_add");
   buttonCart.forEach(button => {

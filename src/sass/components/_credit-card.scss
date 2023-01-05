@@ -2,12 +2,12 @@
 
   &__wrapper {
     padding: 30px 20px;
-    border: 1px solid $red;
+    border: 1px solid $blue;
     background: linear-gradient(90deg,rgb(0,9,36) 6%,rgb(9,9,121) 34%,rgb(0,212,255) 100%);
     border-radius: 10px;
     display: flex;
     flex-direction: column;
-    gap: 50px;
+    gap: 20px;
     align-items: center;
     justify-content: space-between;
     width: 500px;
@@ -21,7 +21,7 @@
   }
 
   &__text {
-    color: $red
+    color: white;
   }
 
   &__img {
@@ -29,7 +29,7 @@
     width: 50px;
     height: 30px;
     border-radius: 5px;
-    border: 1px solid $red;
+    border: 1px solid $blue;
   }
 
   &__logo {
@@ -39,7 +39,31 @@
   }
 
   &__input {
-    border: 1px solid $red;
-    border-radius: 5px;
+    &_valid {
+      width: 130px;
+      margin: 0 10px;
+    }
+    &_cvv {
+      width: 70px;
+      margin: 0 10px;
+    }
   }
+
+  &__input.modal-page__input {
+    border: 1px solid $blue;
+    border-radius: 5px;    
+  }
+
+  &__card {
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
 }

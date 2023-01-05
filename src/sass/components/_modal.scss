@@ -16,8 +16,8 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: $gray-background;
-    border: 5px solid $red;
+    background-color: $gray-modal;
+    border: 5px solid $blue;
     border-radius: 15px;
     padding: 20px;
     display: flex;
@@ -25,15 +25,19 @@
     align-items: center;
     justify-content: space-between;
     gap: 10px;
+
+    &_wrong {
+      border-color: $red-dark;
+    }
   }
 
   &__title {
-    color: $red;
+    color: $blue;
     font-size: 28px;
   }
 
   &__subtitle {
-    color: $red;
+    color: $blue;
     font-size: 24px;
     text-align: center;
     padding-bottom: 10px;
@@ -48,7 +52,7 @@
   }
 
   &__input {
-    border:  1px solid $red;
+    border:  1px solid $blue;
     padding: 5px 10px;
     border-radius: 10px;
     &:focus {
@@ -57,8 +61,32 @@
   }
 
   &__button {
-    background-color: $red;
+    background-color: $blue;
     color: white;
     border-radius: 10px;
+    border: 1px solid $blue;
+  }
+
+  &__error {
+    color: $red-dark;
+    font-weight: 700;
+    
+    &_img {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  &__message {
+    font-size: 36px;
+    background-color: $gray-modal;
+    color: $blue;
+    padding: 50px 70px;
+    border: 2px solid $blue;
+    border-radius: 15px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 }
