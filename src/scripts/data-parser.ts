@@ -191,6 +191,6 @@ class Products implements IProducts {
   }
 }
 
-const products = new Products(data.products);
+export const products = new Products(data.products);
 
 export default products;
