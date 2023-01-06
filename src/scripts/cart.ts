@@ -12,6 +12,8 @@ interface ICart {
 
  addProduct(productId: number): void;
  removeProduct(productId: number): void;
+ getCartProductId(productId: number) : number | undefined;
+ clear() : void;
 }
 
 class Cart implements ICart{
@@ -65,7 +67,7 @@ class Cart implements ICart{
     localStorage.setItem('cart', JSON.stringify(this));
   }
 
-  getCartProductId(productId: number) {
+  getCartProductId(productId: number) : number | undefined {
     for (let i = 0; i < this.products.length; i++) {
       if (this.products[i].id === productId) {
         return i;
@@ -74,7 +76,7 @@ class Cart implements ICart{
     return undefined;
   }
 
-  clear() {
+  clear() : void {
     this.totalItems = 0;
     this.totalPrice = 0;
     this.products = [];
