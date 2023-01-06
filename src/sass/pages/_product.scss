@@ -1,53 +1,96 @@
 .crumbs {
   display: flex;
-  justify-content: space-evenly;
-  margin: 2% 25%;
+  margin: 0 auto;
+  gap: 30px;
+  justify-content: center;
+  padding-bottom: 20px;
+  
 }
 
 .product {
+  border: 5px solid $red;
+  border-radius: 10px;
+  padding: 20px;
+  width: 50%;
+  text-align: center;
+  margin: 0 auto;
   display: flex;
-  justify-content: space-evenly;
-  margin: 5% 15%;
+  gap: 10px;
+}
 
-  .photos {
-    width: 50%;
+.data {
 
-    .main-photo__img {
-      width: 50%;
-    }
-
-    .small-photos {
-      display: flex;
-      width: 40%;
-
-      .small-photo {
-        width: 10%;
-      }
-
-    }
-  }
-
-  .data {
-    text-transform: capitalize;
-    width: 50%;
-
-    .data__title {
-      text-align: center;
-    }
-
-    .data__description {
-      margin: 2% 0;
-    }
-
-    .data__category {
-      margin: 2% 0;
-    }
-
+  &__title {
+    font-size: 28px;
+    color: $red;
+    font-weight: 700;
+    padding-bottom: 30px;
   }
 }
 
-.purchase {
+.photos {
+  width: 50%;
+}
+
+.small-photos {
   display: flex;
-  justify-content: space-between;
-  margin: 10% 25%;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.small-photo {
+  width: 25%;
+  object-fit: contain;
+  cursor: pointer;
+  transition: transform 0.3s;
+  
+  & img {
+    width: 100%;
+    border-radius: 10px;
+  }
+
+  &:hover {
+    transform: scale(1.5)
+  }
+}
+
+.main-photo {  
+  height: 300px;
+  padding-right: 30px;
+  object-fit: cover;
+  padding-bottom: 10px;
+  
+   &__img {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+   }
+}
+
+.crumb {
+  text-transform: uppercase;
+  font-size: 36px;
+  color: $red;
+  &::after {
+    content: ">>";
+    padding-left: 20px;
+  }
+
+  &:last-child {
+    &::after{
+      content: "";
+    }
+  }
+}
+
+.purhase {
+  display: flex;
+}
+
+.button__add {
+  margin-right: 10px;
+}
+
+.button__buy {
+  
 }

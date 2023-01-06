@@ -34,7 +34,7 @@ function renderProduct(product: IProduct) {
   const productBlock = createNode('product');
 
   const photosBlock = createNode('photos');
-  const mainPhotoBlock = createNode('main');
+  const mainPhotoBlock = createNode('photos__main');
   const mainPhoto = createNode('main-photo');
   const mainPhotoImg = document.createElement('img');
   mainPhotoImg.className = 'main-photo__img';
