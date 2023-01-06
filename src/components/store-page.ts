@@ -9,7 +9,7 @@ export function renderStorePage() : void {
         <div class='store__search search'>
           <div class='search__block'>
             <img alt='search' class='search__img' src='../src/assets/img/search3.png'>
-            <input type='search' class='search__input' placeholder ='Search product'></input> 
+            <input type='search' class='search__input' placeholder ='Search product' data-param = 'search'></input> 
           </div>
         </div>
         <div class='store__main'>
