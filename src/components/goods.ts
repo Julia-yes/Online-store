@@ -1,6 +1,7 @@
 import products from '../scripts/data-parser';
 import {renderProductPage} from './product-page';
 import {addPathUrl} from './routing';
+import cart from "../scripts/cart";
 
 
 export function renderGoods() {
@@ -28,7 +29,7 @@ export function renderGoods() {
           <div class='card__stock'>Stock &#58; &#32; ${good.stock}</div>
         </div>
         <div class='card__buttons'>
-          <button class='card__button card__button_add'>Add to cart</button>
+          <button class='card__button card__button_add' data-goodID = "${good.id}">Add to cart</button>
           <button class='card__button card__button_more' data-goodID = "${good.id}">See more</button>
         </div>
       </div>`
@@ -45,15 +46,20 @@ export function renderGoods() {
   })});
   const buttonCart = document.querySelectorAll(".card__button_add");
   buttonCart.forEach(button => {
-    button.addEventListener('click', (e) => {changeButtonCart(e.currentTarget as HTMLElement)});
+    button.addEventListener('click', (e) => {
+      let goodID = (e.currentTarget as HTMLElement).dataset.goodid;
+      if (goodID)
+      changeButtonCart(e.currentTarget as HTMLElement, goodID)});
   })
 }
 
-function changeButtonCart(e: Element) {
+function changeButtonCart(e: Element, id: string) {  
   if (e?.innerHTML == "Add to cart") {
-    e.innerHTML = "Delete from cart"
+    e.innerHTML = "Delete from cart";
+    cart.addProduct(products.getProductById(Number(id)))
   }
   else if (e?.innerHTML == "Delete from cart") {
-    e.innerHTML = "Add to cart"
+    e.innerHTML = "Add to cart";
+    cart.removeProduct(products.getProductById(Number(id)))
   }
 }

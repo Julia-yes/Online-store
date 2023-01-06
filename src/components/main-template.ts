@@ -5,7 +5,7 @@ import {changeRange, fillValues} from "./range";
 import {addListenerForSearch} from './search';
 import {addListenerSortingButtons} from "./sorting";
 import {addListenerForView} from './view';
-import {renderHeader} from './header';
+import {renderHeader, fillCart} from './header';
 import {renderFooter} from "./footer";
 
 
@@ -39,7 +39,8 @@ function initProject() : void {
   addListenerForView();
   renderHeader();
   renderFooter();
-  addListenerForSearch()
+  addListenerForSearch();
+  fillCart()
   
 }
 

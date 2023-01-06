@@ -1,3 +1,5 @@
+import cart from "../scripts/cart";
+
 export function renderHeader() {
   const headerArea = document.querySelector(".header");
   if (headerArea) {
@@ -11,6 +13,9 @@ export function renderHeader() {
       </a>
     </div>
   </div>`
-  }
-  
+  }  
+}
+
+export function fillCart() {
+  console.log(cart)
 }
