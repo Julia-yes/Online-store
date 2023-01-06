@@ -81,7 +81,6 @@ export async function parseUrl() {
       sort = arr[1];
     }
   })
-  console.log(filter)
   await changeMainFilter(filter);
   makeSorting(sort);
   applyView(view);
