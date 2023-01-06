@@ -19,6 +19,9 @@
       color: #635a5a;
     }
   }
+  &__empty {
+      text-align: center;
+    }
 }
 
 .range__input::-webkit-slider-thumb {
@@ -33,7 +36,6 @@
 }
 
 .range__input::-moz-range-thumb {
-  //-webkit-appearance: none;
   pointer-events: all;
   width: 24px;
   height: 24px;

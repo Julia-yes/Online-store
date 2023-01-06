@@ -3,7 +3,6 @@ import {renderProductPage} from './product-page';
 import {addPathUrl} from './routing';
 import cart from "../scripts/cart";
 
-
 export function renderGoods() {
   const goodsArea = document.querySelector('.goods__area');
   const goods = products.products;

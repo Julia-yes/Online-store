@@ -20,7 +20,10 @@ function changeView(ev: Event) {
 
   const goodsArea = document.querySelector('.goods__area');
   goodsArea?.classList.toggle('goods__area_many');
-  
+  const goodsButtons = document.querySelectorAll('.card__button');
+  goodsButtons.forEach(button => {
+    button.classList.toggle('card__button_small')
+  })  
 }
 
 export function applyView(prop: string) {

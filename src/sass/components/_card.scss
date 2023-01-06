@@ -6,6 +6,7 @@
   position: relative;
   border: 1px solid transparent;
   transition: box-shadow 0.3s;
+  box-shadow: 0 0 5px 1px $gray;
 
   &:hover {
     box-shadow: 0 0 15px 1px $red;
@@ -80,18 +81,22 @@
   }
 
   &__button {
-    color: $red;
+    color: white;
     border: 1px solid $red;
-    border-radius: 15px;
+    border-radius: 10px;
     padding: 10px;
     font-size: 16px;
     font-weight: 600;
-    background-color: $gray;
+    background-color: $red;
     cursor: pointer;
     transition: background-color .3s;
 
     &:hover {
-      background-color: white;
+      background-color: $red-light;
+    }
+
+    &_small {
+      font-size: 15px;
     }
   }
 }
