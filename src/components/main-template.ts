@@ -7,6 +7,8 @@ import {addListenerSortingButtons} from "./sorting";
 import {addListenerForView} from './view';
 import {renderHeader} from './header';
 import {renderFooter} from "./footer";
+import {validateForms} from "./modal-page";
+import {addListenerButtonBuy} from "./modal-page";
 
 
 const templateArea = document.querySelector(".store__project");
@@ -29,7 +31,7 @@ function renderTemplate() : void {
 
 function initProject() : void {
   renderTemplate();
-  handleLocation();
+  handleLocation();  
   renderGoods();
   renderFilters();
   fillValues();
@@ -40,7 +42,10 @@ function initProject() : void {
   renderHeader();
   renderFooter();
   addListenerForSearch()
-  
+  addListenerButtonBuy();
+  window.addEventListener('popstate', function() {
+    location.reload();
+  });
 }
 
 initProject()
