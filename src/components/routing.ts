@@ -5,6 +5,7 @@ import {renderStorePage} from './store-page';
 import {IselectedFilters, changeMainFilter, tickCheckboxes} from './filterItem';
 import {makeSorting} from './sorting';
 import {applyView} from "./view";
+import {fillInput} from "./search";
 
 const url = document.location.href;
 
@@ -37,6 +38,7 @@ export async function parseUrl() {
     brand : [],
     price : {min: null, max : null},
     stock : {min: null, max : null},
+    stringSearch: "",
   }
 
   let view = "";
@@ -80,8 +82,13 @@ export async function parseUrl() {
       let arr = param.split('=');
       sort = arr[1];
     }
+    if (param.startsWith("search")) {
+      let arr = param.split('=');
+      filter.stringSearch = arr[1];
+    }
   })
   await changeMainFilter(filter);
+  fillInput(filter.stringSearch)
   makeSorting(sort);
   applyView(view);
   tickCheckboxes()
@@ -98,7 +105,7 @@ export function insertParam(key: string | undefined, value: string | number) {
   for(; i<kvp.length; i++){
     if (kvp[i].startsWith(key + '=')) {
         let pair = kvp[i].split('=');
-        if (pair[0] == "sort" || pair[0] == "view" || pair[0] == "price-min" || pair[0] == "price-max" || pair[0] == "stock-min" || pair[0] == "stock-max") {
+        if ( pair[0] == "search" || pair[0] == "sort" || pair[0] == "view" || pair[0] == "price-min" || pair[0] == "price-max" || pair[0] == "stock-min" || pair[0] == "stock-max") {
           pair[1] = value;
         }
         else {

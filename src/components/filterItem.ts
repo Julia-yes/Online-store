@@ -91,6 +91,7 @@ export interface IselectedFilters {
   brand: string[];
   price: { min: number | null; max: number | null; };
   stock: { min: number | null; max: number | null; };
+  stringSearch: string;
 }
 
 const filterNull: IselectedFilters = {
@@ -98,6 +99,7 @@ const filterNull: IselectedFilters = {
   brand : [],
   price : {min: null, max : null},
   stock : {min: null, max : null},
+  stringSearch: "",
 }
 
 let filter: IselectedFilters = {
@@ -105,6 +107,7 @@ let filter: IselectedFilters = {
   brand : [],
   price : {min: null, max : null},
   stock : {min: null, max : null},
+  stringSearch: "",
 }
 
 export function changeFilters(event: Event) : void {
@@ -121,6 +124,9 @@ export function changeFilters(event: Event) : void {
           (filter[param as keyof IselectedFilters]as unknown as { min: number | null; max: number | null;}).max = Number(newFilter);
         }
       }
+    }
+    else if (param === "search") {
+      filter.stringSearch = newFilter;
     }
     else {
       if ((filter[param as keyof IselectedFilters] as unknown as string[]).indexOf(newFilter) !== -1) {
@@ -167,6 +173,9 @@ function runFiltration(prop: string | null) {
   if(filter.stock.max !== null) {
     filterDownloaded.setStock("max", filter.stock.max)
   }
+  if(filter.stringSearch !== "") {
+    filterDownloaded.setStringSearch(filter.stringSearch)
+  }
   products.applyFilter(filterDownloaded);
   console.log(products)
   if (prop === 'price') {
@@ -186,21 +195,6 @@ function runFiltration(prop: string | null) {
 export function changeMainFilter(filt: IselectedFilters) {
   filter = filt;
   runFiltration(null);
-}
-
-function changeRangePoints(prop: string) {
-  let rangeMin = document.getElementById(`fromSlider${prop}`);
-  let rangeMinNum = document.getElementById(`fromInput${prop}`);
-  let rangeMax = document.getElementById(`toSlider${prop}`);
-  let rangeMaxNum = document.getElementById(`toInput${prop}`);
-  if((filter[prop as keyof IselectedFilters]as unknown as { min: number | null; max: number | null; }).min !== null) {
-    (rangeMin as HTMLInputElement).value = `${(filter[prop as keyof IselectedFilters]as unknown as { min: number | null; max: number | null; }).min}`;
-    (rangeMinNum as HTMLInputElement).value = `${(filter[prop as keyof IselectedFilters]as unknown as { min: number | null; max: number | null; }).min}`;
-  }
-  if((filter[prop as keyof IselectedFilters]as unknown as { min: number | null; max: number | null; }).max !== null) {
-    (rangeMax as HTMLInputElement).value = `${(filter[prop as keyof IselectedFilters]as unknown as { min: number | null; max: number | null; }).max}`;
-    (rangeMaxNum as HTMLInputElement).value = `${(filter[prop as keyof IselectedFilters]as unknown as { min: number | null; max: number | null; }).max}`;
-  }
 }
 
 function rerenderGoodsQuantity() {
