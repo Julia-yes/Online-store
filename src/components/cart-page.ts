@@ -3,6 +3,7 @@ import cart from "../scripts/cart";
 import { createNode } from "../scripts/helpers";
 import { updateHeader } from "./header";
 import { setUrlParameter, getUrlParameterValue } from "../scripts/helpers";
+import { addListenerButtonBuy } from "./modal-page";
 
 const defaultProductsPerPage = '4';
 const defaultPage = '1';
@@ -18,6 +19,7 @@ export function renderCartPage() : void {
       productsSummaryBlock.append(productsBlock, summaryBlock);
       const paginationBlock = renderPagination();
       content.append(productsSummaryBlock, paginationBlock);
+      addListenerButtonBuy();
     } else {
       content.textContent = 'Cart is Empty';
     }
@@ -165,7 +167,12 @@ function renderSummaryBlock() {
   const totalProductsPrice = createNode('content__price', `Total: `);
   const totalProductsPriceValue = createNode('content__price-value', cart.totalPrice);
   totalProductsPrice.append(totalProductsPriceValue);
-  summaryContent.append(totalProductsAmount, totalProductsPrice);
+  
+  const buttonBuy = document.createElement('button');
+  buttonBuy.className = 'button button__buy';
+  buttonBuy.textContent = 'Buy';
+
+  summaryContent.append(totalProductsAmount, totalProductsPrice, buttonBuy);
 
   const promoBlock = createNode('promo');
   const promoInput = document.createElement('input');
