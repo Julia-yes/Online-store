@@ -81,12 +81,24 @@ function addCorrectView(e: Event) {
 
 function redirectToCart() {
   document.location.href="/cart";
-  renderModalPage();
+}
+
+function checkProductInCart() {
+  let arr = location.pathname.split("/");
+  let id = +arr[arr.length -1];
+  const buttonAdd = document.querySelector(".product-page__button_left");
+  if(buttonAdd?.innerHTML.startsWith("Add")) {
+    cart.addProduct(id);
+    updateHeader();
+  }
+  
 }
 
 export async function addListenerButtonBuy() {
   const buttonBuy = document.querySelector(".product-page__button_buy");
   buttonBuy?.addEventListener("click", () => {
+    checkProductInCart()
+    localStorage.setItem('modal', "true");
     redirectToCart();
   });
 }
