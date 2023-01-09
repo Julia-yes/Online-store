@@ -2,7 +2,7 @@ import {handleLocation, parseUrl} from './routing';
 import {renderGoods} from './goods';
 import {renderFilters} from './filterItem';
 import {changeRange, fillValues} from "./range";
-import {runSearch} from './search';
+import {addListenerForSearch} from './search';
 import {addListenerSortingButtons} from "./sorting";
 import {addListenerForView} from './view';
 import {renderHeader} from './header';
@@ -37,13 +37,12 @@ function initProject() : void {
   fillValues();
   changeRange();
   parseUrl();
-  runSearch();
   addListenerSortingButtons();
   addListenerForView();
   renderHeader();
   renderFooter();
+  addListenerForSearch()
   addListenerButtonBuy();
-
   window.addEventListener('popstate', function() {
     location.reload();
   });
