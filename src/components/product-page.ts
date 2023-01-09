@@ -11,11 +11,13 @@ export function renderProductPage() : void {
     content = document.querySelector('.main');
     if (content) {
       content.innerHTML = '';
+      content.classList.add("product-page")
     }
     renderCrumbs(product);
     renderProduct(product);
     renderPurchase(product);
   }
+  addListenerPhotos()
 }
 
 function renderCrumbs(product: IProduct) {
@@ -33,7 +35,7 @@ function renderProduct(product: IProduct) {
   const productBlock = createNode('product');
 
   const photosBlock = createNode('photos');
-  const mainPhotoBlock = createNode('main');
+  const mainPhotoBlock = createNode('photos__main');
   const mainPhoto = createNode('main-photo');
   const mainPhotoImg = document.createElement('img');
   mainPhotoImg.className = 'main-photo__img';
@@ -51,42 +53,63 @@ function renderProduct(product: IProduct) {
     smallPhotosBlock.append(smallPhoto);
   }
   photosBlock.append(mainPhotoBlock, smallPhotosBlock);
-  
 
   const productDataBlock = createNode('data');
-  const productTitle = createNode('data__title', product.title);
-  const productDescription = createNode('data__description', product.description);
-  const productBrand = createNode('data__brand', product.brand);
-  const productCategory = createNode('data__category', product.category);
-  
-  const productStats = createNode('stats');
-  const productRating = createNode('data__rating', 'Rating: ' + product.rating);
-  const productStock = createNode('data__stock', 'Stock: ' + product.stock);
-  productStats.append(productRating, productStock);
-  productDataBlock.append(productTitle, productDescription, productBrand, productCategory, productStats);
+  const productTitle = createNode('data__title data__item', product.title);
+  const productCategory = createNode('data__category data__item', 'Category: ');
+  const productCategoryContent = createNode('data__item-content', product.category);
+  productCategory.append(productCategoryContent);
+  const productBrand = createNode('data__brand data__item', 'Brand: ');
+  const productBrandContent = createNode('data__item-content', product.brand);
 
+  productBrand.append(productBrandContent);
+
+  const productDescription = createNode('data__description data__item', 'Description: ');
+  const productDescriptionContent = createNode('data__item-content', product.description);
+
+  productDescription.append(productDescriptionContent);
+
+  const productStats = createNode('stats');
+  const productRating = createNode('data__rating stats__item', 'Rating: ' + product.rating);
+  const productStock = createNode('data__stock stats__item', 'Stock: ' + product.stock);
+
+  productStats.append(productRating, productStock);
+  productDataBlock.append(productTitle, productCategory, productBrand, productDescription, productStats);
   productBlock.append(photosBlock, productDataBlock);
   content?.append(productBlock);
 }
 
 function renderPurchase(product: IProduct) {
   const purchaseBlock = createNode('purchase');
-
   const priceBlock = createNode('price');
-  const discount = createNode('price__discount', `Discount: \n${product.discountPercentage}`);
-  const price = createNode('price__amount', `Price: \n${product.price}`);
-  priceBlock.append(discount, price);
+  const discount = createNode('price__discount', `Discount: \n${product.discountPercentage}%`);
+  const price = createNode('price__amount', `${product.price}$`);
+
+  priceBlock.append(price, discount);
 
   const buttonsBlock = createNode('buttons');
   const buttonAdd = document.createElement('button');
-  buttonAdd.className = 'button button__add';
+  buttonAdd.className = 'button product-page__button product-page__button_add';
   buttonAdd.textContent = 'Add to Cart';
   const buttonBuy = document.createElement('button');
-  buttonBuy.className = 'button button__buy';
+  buttonBuy.className = 'button product-page__button product-page__button_buy';
   buttonBuy.textContent = 'Buy Now';
+  
   buttonsBlock.append(buttonAdd, buttonBuy);
-
   purchaseBlock.append(priceBlock, buttonsBlock);
-
   content?.append(purchaseBlock);
+}
+
+function addListenerPhotos() {
+  const photos = document.querySelectorAll('.small-photo');
+  photos.forEach(photo => {
+    photo.addEventListener('click', (e) => changeMainPhoto(e))
+  })
+} 
+
+function changeMainPhoto(event: Event) {
+  const mainPhoto = document.querySelector(".main-photo__img");
+  const newSrc = (event.target as HTMLImageElement).src;
+  if (mainPhoto)
+  (mainPhoto as HTMLImageElement).src=`${newSrc}`;
 }
