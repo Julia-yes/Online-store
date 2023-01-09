@@ -35,6 +35,7 @@
   &__string {
     display: flex;
     flex-direction: row;
+    cursor: pointer;
   }
 
   ::-webkit-scrollbar-button {

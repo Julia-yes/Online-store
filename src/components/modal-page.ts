@@ -1,3 +1,6 @@
+import cart from "../scripts/cart";
+import { updateHeader } from './header';
+
 export function renderModalPage() {
   const main = document.querySelector('.main');
   const modalPage = document.createElement("section");
@@ -77,7 +80,7 @@ function addCorrectView(e: Event) {
 }
 
 export function addListenerButtonBuy() {
-  const buttonBuy = document.querySelector(".button__buy");
+  const buttonBuy = document.querySelector(".product-page__button_buy");
   buttonBuy?.addEventListener("click", renderModalPage);
 }
 
@@ -109,7 +112,6 @@ function changePaySystem(event: Event) {
   else if (value.startsWith("5")) {
     (img as HTMLImageElement).src = "../src/assets/img/card-m.png"
   }
-
 }
 
 function addListenerForms() {
@@ -134,13 +136,6 @@ function typeRight(prop: string) {
     error.innerHTML = `<img alt="right" class="modal-page__error_img" src="../src/assets/img/right.png">`;
   }
 }
-
-// function typeErrorImg(prop: string) {
-//   const error = document.querySelector(`.modal-page__error_${prop}`);
-//   if (error) {
-//     error.innerHTML = `<img alt="right" class="modal-page__error_img" src="../src/assets/img/error.png">`;
-//   }
-// }
 
 export function validateForms(event: Event) {
   let name = (event.currentTarget as HTMLInputElement).dataset.name;
@@ -242,14 +237,14 @@ function checkCorrectInput() {
 function completeOrder() {
   renderMessageConfirm();
   redirectToMain();
-  
+  cart.clear();
+  updateHeader();
 }
 
 function renderMessageConfirm() {
   const messageArea = document.querySelector(".main");
   if(messageArea)
   messageArea.innerHTML = `<div class="modal-page__message">Thanks for your order</div>`;
-  
 }
 
 function redirectToMain() {

@@ -1,6 +1,7 @@
 import products from '../scripts/data-parser';
 import {data} from '../assets/data/data';
 import {changeFilters} from './filterItem';
+
 let priceMin = 0;
 let priceMax = 0;
 let stockMin = 0;

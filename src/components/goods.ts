@@ -1,11 +1,9 @@
 import products from '../scripts/data-parser';
 import cart from '../scripts/cart';
-// import { updateHeader } from './header';
 import {renderProductPage} from './product-page';
 import {addPathUrl} from './routing';
 import {addListenerButtonBuy} from "./modal-page";
 import { updateHeader } from './header';
-
 
 export function renderGoods() {
   let localStorageCart;

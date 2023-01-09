@@ -11,11 +11,11 @@ function renderCategories(): void {
   let categoryInner = `<div class='category__container'>`
   
   for (let key in categories) {
-    categoryInner += `<div class='filter__string'>
+    categoryInner += `<label class='filter__string'>
       <input type = 'checkbox' class='filter__checkbox filter__checkbox_category' value="${key}" name="${key}" data-param = 'category' data-quantity="${categories[key].length}">
       <div class='category__title'>${key}&ensp;</div>
       <div class='category__quantity filter__quantity' data-param ="${key}">(${categories[key].length})</div>
-    </div>`
+    </label>`
   }
 
   categoryInner += `</div>`;
@@ -30,11 +30,11 @@ function renderBrands() : void {
   let brandsInner = `<div class='brand__container'>`
   
   for (let key in brands) {
-    brandsInner += `<div class='filter__string'>
+    brandsInner += `<label class='filter__string'>
       <input type = 'checkbox' class='filter__checkbox filter__checkbox_brand' value="${key}" name="${key}" data-param = 'brand' data-quantity="${brands[key].length}">
       <div class='brand__title'>${key}&ensp;</div>
       <div class='brand__quantity filter__quantity' data-param ="${key}">(${brands[key].length})</div>
-    </div>`
+    </label>`
   }
 
   brandsInner += `</div>`;
@@ -177,7 +177,6 @@ function runFiltration(prop: string | null) {
     filterDownloaded.setStringSearch(filter.stringSearch)
   }
   products.applyFilter(filterDownloaded);
-  console.log(products)
   if (prop === 'price') {
     changeStockRange();
   }

@@ -8,7 +8,6 @@ export function addListenerForSearch() {
 }
 
 export function fillInput(prop: string) {
-  console.log("111", prop)
   const searchInput = document.querySelector(".search__input");
   if (searchInput)
   (searchInput as HTMLInputElement).value = prop

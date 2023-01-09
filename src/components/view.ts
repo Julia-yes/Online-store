@@ -8,8 +8,6 @@ export function addListenerForView() {
 })});
 }
 
-
-
 function changeView(ev: Event) {
   const buttonsView = document.querySelectorAll('.view__button_img');
   buttonsView.forEach(button => {
@@ -20,7 +18,6 @@ function changeView(ev: Event) {
 
   const goodsArea = document.querySelector('.goods__area');
   goodsArea?.classList.toggle('goods__area_many');
-  
 }
 
 export function applyView(prop: string) {
@@ -31,6 +28,5 @@ export function applyView(prop: string) {
     goodsArea?.classList.add('goods__area_many');
     buttonFew?.classList.remove("view__button_active");
     buttonMany?.classList.add("view__button_active");
-
   }
 }
