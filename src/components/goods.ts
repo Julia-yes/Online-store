@@ -1,10 +1,17 @@
 import products from '../scripts/data-parser';
+import cart from '../scripts/cart';
+// import { updateHeader } from './header';
 import {renderProductPage} from './product-page';
 import {addPathUrl} from './routing';
 import {addListenerButtonBuy} from "./modal-page";
+import { updateHeader } from './header';
 
 
 export function renderGoods() {
+  let localStorageCart;
+  if (localStorage.cart) {
+    localStorageCart = JSON.parse(localStorage.cart);
+  }
   const goodsArea = document.querySelector('.goods__area');
   const goods = products.products;
   let goodsInner = ``;
@@ -12,8 +19,16 @@ export function renderGoods() {
     goodsInner += `<div class='goods__empty'> No products found </div>`
   }
   else {
-    for (let key in goods) {
-      let good = goods[key];
+    for (const key in goods) {
+      const good = goods[key];
+      let buttonStr = `<button class='card__button card__button_cart card__button_add' data-goodID = "${good.id}">Add to cart</button>`;
+      if (localStorage.cart) {
+        for (let i = 0; i < localStorageCart.products.length; i++) {
+          if (+localStorageCart.products[i].id === good.id) {
+            buttonStr = `<button class='card__button card__button_cart card__button_delete' data-goodID = "${good.id}">Delete from cart</button>`;
+          }
+        }
+      }
       goodsInner += `<div class='goods__card card'>
         <div class='card__thumbnail'>
           <img alt='good' class='card__img' src='${good.thumbnail}'>
@@ -29,7 +44,7 @@ export function renderGoods() {
           <div class='card__stock'>Stock &#58; &#32; ${good.stock}</div>
         </div>
         <div class='card__buttons'>
-          <button class='card__button card__button_add'>Add to cart</button>
+          ${buttonStr}
           <button class='card__button card__button_more' data-goodID = "${good.id}">See more</button>
         </div>
       </div>`
@@ -40,22 +55,33 @@ export function renderGoods() {
   }
   const buttonsToProduct = document.querySelectorAll('.card__button_more');
   buttonsToProduct.forEach(button => {button.addEventListener('click', (e) => {
-    let goodID = (e.currentTarget as HTMLElement).dataset.goodid;
+    const goodID = (e.currentTarget as HTMLElement).dataset.goodid;
     addPathUrl(`/product/${goodID}`);
     renderProductPage();
     addListenerButtonBuy();
   })});
-  const buttonCart = document.querySelectorAll(".card__button_add");
+  const buttonCart = document.querySelectorAll(".card__button_cart");
   buttonCart.forEach(button => {
-    button.addEventListener('click', (e) => {changeButtonCart(e.currentTarget as HTMLElement)});
-  })
+    button.addEventListener('click', (e) => {proceedAddToCart(e.currentTarget as HTMLElement)});
+  });
+  updateHeader();
 }
 
-function changeButtonCart(e: Element) {
-  if (e?.innerHTML == "Add to cart") {
-    e.innerHTML = "Delete from cart"
+function proceedAddToCart(e: Element) {
+  const goodID = Number((e as HTMLElement).dataset.goodid);
+  if (goodID) {
+    if (e.classList.contains('card__button_add')) {
+      cart.addProduct(goodID);
+      e.classList.remove('card__button_add');
+      e.classList.add('card__button_delete');
+      e.textContent = "Delete from cart";
+    }
+    else {
+      cart.removeProduct(goodID);
+      e.classList.remove('card__button_delete');
+      e.classList.add('card__button_add');
+      e.textContent = 'Add to cart';
+    }
   }
-  else if (e?.innerHTML == "Delete from cart") {
-    e.innerHTML = "Add to cart"
-  }
+  updateHeader();
 }

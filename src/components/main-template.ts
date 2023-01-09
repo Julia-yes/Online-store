@@ -31,7 +31,7 @@ function renderTemplate() : void {
 
 function initProject() : void {
   renderTemplate();
-  handleLocation();  
+  handleLocation();
   renderGoods();
   renderFilters();
   fillValues();

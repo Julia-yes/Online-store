@@ -1,4 +1,5 @@
 import products from "../scripts/data-parser";
+import { createNode } from "../scripts/helpers";
 import { IProduct } from "../scripts/data-parser";
 
 let content: HTMLDivElement | null;
@@ -88,11 +89,4 @@ function renderPurchase(product: IProduct) {
   purchaseBlock.append(priceBlock, buttonsBlock);
 
   content?.append(purchaseBlock);
-}
-
-function createNode(className: string, textContent?: string) {
-  const node = document.createElement('div');
-  node.className = className;
-  if (textContent) node.textContent = textContent;
-  return node;
 }
