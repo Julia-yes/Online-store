@@ -73,7 +73,7 @@ function addListenerValidForm() {
 }
 
 function addCorrectView(e: Event) {
-  let value = (e.currentTarget as HTMLInputElement).value;
+  const value = (e.currentTarget as HTMLInputElement).value;
   if (value.length >= 2) {
     (e.currentTarget as HTMLInputElement).value = `${value.slice(0, 2)}/${value.slice(3)}`
   }
@@ -100,7 +100,7 @@ function addListenerCardNumber() {
 }
 
 function changePaySystem(event: Event) {
-  let value = (event.currentTarget as HTMLInputElement).value;
+  const value = (event.currentTarget as HTMLInputElement).value;
   const img = document.querySelector(".credit-card__logo");
   if (img)
   if (value.startsWith("3")) {
@@ -138,10 +138,10 @@ function typeRight(prop: string) {
 }
 
 export function validateForms(event: Event) {
-  let name = (event.currentTarget as HTMLInputElement).dataset.name;
-  let value = (event.currentTarget as HTMLInputElement).value;
+  const name = (event.currentTarget as HTMLInputElement).dataset.name;
+  const value = (event.currentTarget as HTMLInputElement).value;
   if (name == "name") {
-    let result = value.split(" ");
+    const result = value.split(" ");
     if (result.length < 2 || result[0].length < 2 || result[1].length < 2) {
       typeError("Error name", name)
     }
@@ -159,7 +159,7 @@ export function validateForms(event: Event) {
     }
   }
   if (name == "address") {
-    let result = value.split(" ");
+    const result = value.split(" ");
     if (result.length < 3 || result[0].length < 5 || result[1].length < 5 || result[2].length < 5) {
       typeError("Error address", name)
     }
@@ -209,7 +209,7 @@ function checkRequiredInputs() {
   const forms = document.querySelectorAll(".modal-page__input");
   forms.forEach(form => {
     if ((form as HTMLInputElement).value == "") {
-      let prop = (form as HTMLElement).dataset.name;
+      const prop = (form as HTMLElement).dataset.name;
       if (prop)
       typeError("Required", prop);
     }
