@@ -3,7 +3,7 @@ import cart from "../scripts/cart";
 import { createNode } from "../scripts/helpers";
 import { updateHeader } from "./header";
 import { setUrlParameter, getUrlParameterValue } from "../scripts/helpers";
-import { addListenerButtonBuy } from "./modal-page";
+import { addListenerButtonBuy,renderModalPage } from "./modal-page";
 
 const defaultProductsPerPage = '4';
 const defaultPage = '1';
@@ -23,6 +23,11 @@ export function renderCartPage() : void {
     } else {
       content.textContent = 'Cart is Empty';
     }
+  }
+  const modalPage = localStorage.getItem('modal');
+  if (modalPage === "true") {
+    localStorage.setItem('modal', "false");
+    renderModalPage()
   }
 }
 

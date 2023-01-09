@@ -79,9 +79,28 @@ function addCorrectView(e: Event) {
   }
 }
 
-export function addListenerButtonBuy() {
+function redirectToCart() {
+  document.location.href="/cart";
+}
+
+function checkProductInCart() {
+  let arr = location.pathname.split("/");
+  let id = +arr[arr.length -1];
+  const buttonAdd = document.querySelector(".product-page__button_left");
+  if(buttonAdd?.innerHTML.startsWith("Add")) {
+    cart.addProduct(id);
+    updateHeader();
+  }
+  
+}
+
+export async function addListenerButtonBuy() {
   const buttonBuy = document.querySelector(".product-page__button_buy");
-  buttonBuy?.addEventListener("click", renderModalPage);
+  buttonBuy?.addEventListener("click", () => {
+    checkProductInCart()
+    localStorage.setItem('modal', "true");
+    redirectToCart();
+  });
 }
 
 function addListenerConfirm() {
