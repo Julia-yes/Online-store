@@ -79,9 +79,16 @@ function addCorrectView(e: Event) {
   }
 }
 
-export function addListenerButtonBuy() {
+function redirectToCart() {
+  document.location.href="/cart";
+  renderModalPage();
+}
+
+export async function addListenerButtonBuy() {
   const buttonBuy = document.querySelector(".product-page__button_buy");
-  buttonBuy?.addEventListener("click", renderModalPage);
+  buttonBuy?.addEventListener("click", () => {
+    redirectToCart();
+  });
 }
 
 function addListenerConfirm() {
