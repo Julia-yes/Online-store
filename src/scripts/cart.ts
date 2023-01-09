@@ -5,7 +5,7 @@ interface ICartProduct {
   amount: number;
 }
 
-interface ICart {
+export interface ICart {
   totalItems: number;
   totalPrice: number;
   products: ICartProduct[];
@@ -22,9 +22,16 @@ class Cart implements ICart{
   products: ICartProduct[];
 
   constructor() {
-    this.totalItems = 0;
-    this.totalPrice = 0;
-    this.products = [];
+    if (localStorage.cart) {
+      const localStorageCart = JSON.parse(localStorage.cart);
+      this.totalItems = localStorageCart.totalItems;
+      this.totalPrice = localStorageCart.totalPrice;
+      this.products = localStorageCart.products;
+    } else {
+      this.totalItems = 0;
+      this.totalPrice = 0;
+      this.products = [];
+    }
   }
 
   addProduct(productId: number) : void {
@@ -48,11 +55,6 @@ class Cart implements ICart{
     this.totalItems--;
     const productPrice = products.getProductById(productId)?.price;
     if (productPrice) this.totalPrice -= productPrice;
-
-    const cartProductId = this.getCartProductId(productId);
-    if (cartProductId) {
-      this.products[cartProductId].amount--;
-    }
 
     for (let i = 0; i < this.products.length; i++) {
       if (this.products[i].id === productId) {
@@ -80,9 +82,9 @@ class Cart implements ICart{
     this.totalItems = 0;
     this.totalPrice = 0;
     this.products = [];
-    localStorage.setItem('cart', JSON.stringify(this));
+    localStorage.setItem('cart', '');
   }
 }
 
-const cart = new Cart();
+export const cart = new Cart();
 export default cart;

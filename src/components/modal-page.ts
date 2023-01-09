@@ -1,6 +1,6 @@
 export function renderModalPage() {
   const main = document.querySelector('.main');
-  let modalPage = document.createElement("section");
+  const modalPage = document.createElement("section");
   modalPage.className = "modal-page";
   modalPage.innerHTML = `<form class="modal-page__wrapper">
     <h1 class="modal-page__title">Personal information</h1>
@@ -61,7 +61,7 @@ export function renderModalPage() {
   addListenerForms();
   addListenerCardNumber();
   addListenerValidForm();
-  addListenerConfirm()
+  addListenerConfirm();
 }
 
 function addListenerValidForm() {
