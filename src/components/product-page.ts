@@ -1,6 +1,8 @@
 import products from "../scripts/data-parser";
 import { createNode } from "../scripts/helpers";
 import { IProduct } from "../scripts/data-parser";
+import cart from "../scripts/cart";
+import { updateHeader } from "./header";
 
 let content: HTMLDivElement | null;
 
@@ -89,8 +91,45 @@ function renderPurchase(product: IProduct) {
 
   const buttonsBlock = createNode('buttons');
   const buttonAdd = document.createElement('button');
-  buttonAdd.className = 'button product-page__button product-page__button_add';
-  buttonAdd.textContent = 'Add to Cart';
+  buttonAdd.className = 'button product-page__button';
+  // buttonAdd.className = 'button product-page__button product-page__button_add';
+  console.log(product.id, 123)
+  
+  let isProductInCart = false;
+  for (let i = 0; i < cart.products.length; i++) {
+    if (cart.products[i].id === product.id) {
+      isProductInCart = true;
+    }
+  }
+  if (isProductInCart) {
+    buttonAdd.textContent = 'Remove from Cart';
+    buttonAdd.classList.add('product-page__button-remove');
+  } else {
+    buttonAdd.textContent = 'Add to Cart';
+    buttonAdd.classList.add('product-page__button-add');
+  }
+
+  buttonAdd.addEventListener('click', () => {
+    isProductInCart = false;
+    for (let i = 0; i < cart.products.length; i++) {
+      if (cart.products[i].id === product.id) {
+        isProductInCart = true;
+      }
+    }
+    if (isProductInCart) {
+      cart.removeProductCompletely(product.id);
+      buttonAdd.textContent = 'Add to Cart';
+      buttonAdd.classList.add('product-page__button-add');
+      buttonAdd.classList.remove('product-page__button-remove');
+    } else {
+      cart.addProduct(product.id);
+      buttonAdd.textContent = 'Remove from Cart';
+      buttonAdd.classList.add('product-page__button-remove');
+      buttonAdd.classList.remove('product-page__button-add');
+    }
+    updateHeader();
+  })
+
   const buttonBuy = document.createElement('button');
   buttonBuy.className = 'button product-page__button product-page__button_buy';
   buttonBuy.textContent = 'Buy Now';

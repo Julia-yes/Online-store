@@ -75,7 +75,7 @@ function proceedAddToCart(e: Element) {
       e.textContent = "Delete from cart";
     }
     else {
-      cart.removeProduct(goodID);
+      cart.removeProductCompletely(goodID);
       e.classList.remove('card__button_delete');
       e.classList.add('card__button_add');
       e.textContent = 'Add to cart';

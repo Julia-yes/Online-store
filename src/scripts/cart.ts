@@ -84,6 +84,15 @@ class Cart implements ICart{
     this.products = [];
     localStorage.setItem('cart', '');
   }
+
+  removeProductCompletely(id: number) {
+    const cartProductId = this.getCartProductId(id);
+    if (cartProductId !== undefined) {
+      while (this.products[cartProductId] && this.products[cartProductId].id === id) {
+        this.removeProduct(id);
+      }
+    }
+  }
 }
 
 export const cart = new Cart();
