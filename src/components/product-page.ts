@@ -91,9 +91,8 @@ function renderPurchase(product: IProduct) {
 
   const buttonsBlock = createNode('buttons');
   const buttonAdd = document.createElement('button');
-  buttonAdd.className = 'button product-page__button';
+  buttonAdd.className = 'button product-page__button product-page__button_left';
   // buttonAdd.className = 'button product-page__button product-page__button_add';
-  console.log(product.id, 123)
   
   let isProductInCart = false;
   for (let i = 0; i < cart.products.length; i++) {

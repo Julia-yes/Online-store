@@ -25,6 +25,11 @@ export function renderCartPage() : void {
       renderEmptyCartPage();
     }
   }
+  const modalPage = localStorage.getItem('modal');
+  if (modalPage === "true") {
+    localStorage.setItem('modal', "false");
+    renderModalPage()
+  }
 }
 
 function renderProductsBlock() {
@@ -166,7 +171,12 @@ function renderSummaryBlock() {
   const totalProductsPrice = createNode('content__price', `Total: `);
   const totalProductsPriceValue = createNode('content__price-value', cart.totalPrice.toFixed(2));
   totalProductsPrice.append(totalProductsPriceValue);
-  summaryContent.append(totalProductsAmount, totalProductsPrice);
+  
+  const buttonBuy = document.createElement('button');
+  buttonBuy.className = 'button button__buy';
+  buttonBuy.textContent = 'Buy';
+
+  summaryContent.append(totalProductsAmount, totalProductsPrice, buttonBuy);
 
   const promoBlock = createNode('promo');
   const promoInput = document.createElement('input');

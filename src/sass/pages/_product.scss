@@ -128,7 +128,7 @@
   box-shadow: 0 0 10px $gray;
   margin: auto;
   border-radius: 10px;
-  width: 50%;
+  width: 65%;
 }
 
 .stats {
@@ -170,4 +170,10 @@
     color: $red;
     font-weight: 700;
   }
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
 }
