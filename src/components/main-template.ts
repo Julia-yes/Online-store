@@ -7,7 +7,6 @@ import {addListenerSortingButtons} from "./sorting";
 import {addListenerForView} from './view';
 import {renderHeader} from './header';
 import {renderFooter} from "./footer";
-import {validateForms} from "./modal-page";
 import {addListenerButtonBuy} from "./modal-page";
 
 

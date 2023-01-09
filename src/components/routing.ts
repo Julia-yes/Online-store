@@ -137,14 +137,4 @@ export function insertParam(key: string | undefined, value: string | number) {
   window.history.pushState({path:newurl},'',newurl);
 }
 
-// const buttons = document.querySelectorAll(".list__item");
-// buttons.forEach((element) => {
-//   element.addEventListener('click', (e) => {
-//     const path: string = (e.target as HTMLAnchorElement).href;
-//     e = e || window.event;
-//     e.preventDefault();
-   
-//   })
-// })
-
 window.onpopstate = handleLocation;

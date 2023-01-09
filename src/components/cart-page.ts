@@ -104,10 +104,8 @@ function setChangeAmountListener(items: HTMLElement[]) {
         }
         else {
           if (cartProductId !== undefined && cart.products[cartProductId].amount === 1) {
-            console.log(productBuyDataBlock);
             productBuyDataBlock.parentElement?.remove();
           }
-          console.log(productId, cartProductId);
           cart.removeProduct(+productId);
 
           const productsPerPage = getUrlParameterValue('itemsPerPage') || +defaultProductsPerPage;
@@ -280,12 +278,10 @@ function renderPagination() {
     const inputNewValue = (e.target as HTMLInputElement).value;
     if (inputNewValue === '') return;
     currentPage = getUrlParameterValue('page') || 1;
-    console.log(cart.products.length, itemsPerPage, currentPage)
     if (cart.products.length < +inputNewValue * currentPage) {
       currentPage = Math.ceil(cart.products.length / +inputNewValue);
       const currentPageValue = document.querySelector('.switch-page__current');
       if (currentPageValue?.textContent) currentPageValue.textContent = '' + currentPage;
-      console.log(currentPage)
       setUrlParameter('page', currentPage);
     } 
     setUrlParameter('itemsPerPage', inputNewValue);
