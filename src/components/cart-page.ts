@@ -120,6 +120,7 @@ function setChangeAmountListener(items: HTMLElement[]) {
             const content = document.querySelector('.main');
             if (content) {
               renderEmptyCartPage();
+              updateHeader();
               return;
             }
           }
