@@ -3,7 +3,7 @@ import cart from "../scripts/cart";
 import { createNode } from "../scripts/helpers";
 import { updateHeader } from "./header";
 import { setUrlParameter, getUrlParameterValue } from "../scripts/helpers";
-import { addListenerButtonBuy,renderModalPage } from "./modal-page";
+import { addListenerButtonBuy } from "./modal-page";
 
 const defaultProductsPerPage = '4';
 const defaultPage = '1';
@@ -11,6 +11,7 @@ const defaultPage = '1';
 export function renderCartPage() : void {
   const content = document.querySelector('.main');
   if (content) {
+    content.innerHTML = '';
     if (localStorage.cart && JSON.parse(localStorage.cart).products.length) {
       const productsBlock = renderProductsBlock();
       const summaryBlock = renderSummaryBlock();
@@ -21,7 +22,7 @@ export function renderCartPage() : void {
       content.append(productsSummaryBlock, paginationBlock);
       addListenerButtonBuy();
     } else {
-      content.textContent = 'Cart is Empty';
+      renderEmptyCartPage();
     }
   }
   const modalPage = localStorage.getItem('modal');
@@ -63,8 +64,8 @@ function renderProductsList(productsBlock?: HTMLElement) {
       const productData = createNode('product__data');
       const productDataName = createNode('product__data-name', currentProduct.title);
       const productDescription = createNode('product__data-description', currentProduct.description);
-      const productRating = createNode('product__data-rating', currentProduct.rating);
-      const productDiscount = createNode('product__data-discount', currentProduct.discountPercentage);
+      const productRating = createNode('product__data-rating', `Rating: ${currentProduct.rating} ★`);
+      const productDiscount = createNode('product__data-discount', `Discount: ${currentProduct.discountPercentage}%`);
       productData.append(productDataName, productDescription, productRating, productDiscount);
 
       const productBuyData = createNode('product__buy-data');
@@ -118,7 +119,7 @@ function setChangeAmountListener(items: HTMLElement[]) {
           if (cart.products.length === 0) {
             const content = document.querySelector('.main');
             if (content) {
-              content.textContent = 'Cart is Empty';
+              renderEmptyCartPage();
               return;
             }
           }
@@ -140,17 +141,17 @@ function setChangeAmountListener(items: HTMLElement[]) {
               if (!isUpdatedPageEmpty) {
                 currentAmount.textContent = "" + cart.products[cartProductId].amount;
                 summaryAmount.textContent = "" + cart.totalItems;
-                summaryPrice.textContent = "" + cart.totalPrice;
+                summaryPrice.textContent = "" + cart.totalPrice.toFixed(2);
               }
 
               const newProductsPriceValue = document.querySelector('.content__price-value-new');
               if (newProductsPriceValue && newProductsPriceValue?.textContent) {
-                newProductsPriceValue.textContent = '' + cart.totalPrice * (1 - (document.querySelectorAll('.promo-table__row').length / 10));
+                newProductsPriceValue.textContent = '' + (cart.totalPrice * (1 - (document.querySelectorAll('.promo-table__row').length / 10))).toFixed(2);
               }
             } 
             else {
               const content = document.querySelector('.main');
-              if (content) content.innerHTML = 'Cart is Empty';
+              if (content) renderEmptyCartPage();
             }
           }
         }
@@ -162,13 +163,13 @@ function setChangeAmountListener(items: HTMLElement[]) {
 
 function renderSummaryBlock() {
   const summaryBlock = createNode('summary');
-  const summaryHeader = createNode('summary__header', 'Header');
+  const summaryHeader = createNode('summary__header', 'Summary');
   const summaryContent = createNode('content');
   const totalProductsAmount = createNode('content__amount', `Products: `);
   const totalProductsAmountValue = createNode('content__amount-value', cart.totalItems);
   totalProductsAmount.append(totalProductsAmountValue);
   const totalProductsPrice = createNode('content__price', `Total: `);
-  const totalProductsPriceValue = createNode('content__price-value', cart.totalPrice);
+  const totalProductsPriceValue = createNode('content__price-value', cart.totalPrice.toFixed(2));
   totalProductsPrice.append(totalProductsPriceValue);
   
   const buttonBuy = document.createElement('button');
@@ -199,7 +200,7 @@ function renderSummaryBlock() {
         promoBlock.querySelector('.promo__add')?.remove();
         if (!promoTable) {
           promoTable = createNode('promo-table');
-          const promoTableHeader = createNode('promo-table__header');
+          const promoTableHeader = createNode('promo-table__header', 'Applied Promocodes:');
           promoTable.append(promoTableHeader);
         }
         const promoCodeRow = createNode('promo-table__row');
@@ -218,12 +219,12 @@ function renderSummaryBlock() {
         if (newProductsPrice) {
           const newProductsPriceValue = document.querySelector('.content__price-value-new');
           if (newProductsPriceValue) {
-            newProductsPriceValue.textContent = '' + cart.totalPrice * (1 - (appliedPromocodes.length / 10));
+            newProductsPriceValue.textContent = '' + (cart.totalPrice * (1 - (appliedPromocodes.length / 10))).toFixed(2);
           }
         }
         else {
           newProductsPrice = createNode('content__price-new', `Total: `);
-          const newProductsPriceValue = createNode('content__price-value-new', cart.totalPrice * (1 - (appliedPromocodes.length / 10)));
+          const newProductsPriceValue = createNode('content__price-value-new', (cart.totalPrice * (1 - (appliedPromocodes.length / 10))).toFixed(2));
           newProductsPrice.append(newProductsPriceValue);
         }
         const contentBlock = document.querySelector('.content');
@@ -240,7 +241,7 @@ function renderSummaryBlock() {
             if (newProductsPrice) {
               const newProductsPriceValue = document.querySelector('.content__price-value-new');
               if (newProductsPriceValue) {
-                newProductsPriceValue.textContent = '' + cart.totalPrice * (1 - (appliedPromocodes.length / 10));
+                newProductsPriceValue.textContent = '' + (cart.totalPrice * (1 - (appliedPromocodes.length / 10))).toFixed(2);
               }
             }
           }
@@ -252,7 +253,7 @@ function renderSummaryBlock() {
         })
       })
 
-      promoBlock.append(addButton);
+      promoInput.after(addButton);
 
     } else if (promoBlock.querySelector('.promo__add')) {
       promoBlock.querySelector('.promo__add')?.remove();
@@ -263,7 +264,11 @@ function renderSummaryBlock() {
   promoHint.append(promoHintValue);
   promoBlock.append(promoHint, promoInput);
   
-  summaryBlock.append(summaryHeader, summaryContent, promoBlock);
+  const buyButton = createNode('button');
+  buyButton.className = 'button product-page__button product-page__button_buy cart-buy__button';
+  buyButton.textContent = 'Buy Now';
+
+  summaryBlock.append(summaryHeader, summaryContent, promoBlock, buyButton);
   return summaryBlock;
 }
 
@@ -327,4 +332,13 @@ function renderPagination() {
 
   paginationBlock.append(itemsPerPageBlock, switchPageBlock);
   return paginationBlock;
+}
+
+function renderEmptyCartPage() {
+  const content = document.querySelector('.main');
+  if (content) {
+    content.innerHTML = '';
+    const emptyBlock = createNode('cart__empty', 'Cart is empty');
+    content.append(emptyBlock);
+  }
 }
