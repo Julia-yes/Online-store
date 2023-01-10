@@ -169,7 +169,7 @@ export function validateForms(event: Event) {
     }
   }
   if (name == "tel") {
-    var re = /^[\+][\d\(\)\ -]{9,14}\d$/;
+    var re = /^[\+][0-9]{9}/;
     if (re.test(value)) {
       typeRight(name)
     }

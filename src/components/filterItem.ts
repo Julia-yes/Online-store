@@ -1,4 +1,4 @@
-import products from '../scripts/data-parser';
+import {products, allProducts} from '../scripts/data-parser';
 import Filter from '../scripts/filter';
 import {renderGoods} from './goods';
 import {renderGoodsQuantity} from './store-page';
@@ -6,15 +6,18 @@ import {changeRange, changePriceRange, changeStockRange} from './range';
 import {insertParam} from "./routing";
 
 function renderCategories(): void {
+  console.log(products);
+  console.log(allProducts)
   const categoriesArea = document.querySelector('.filter__category_area');
   const categories = products.categories;
+  const categoriesAll = allProducts.categories;
   let categoryInner = `<div class='category__container'>`
   
   for (const key in categories) {
     categoryInner += `<label class='filter__string'>
       <input type = 'checkbox' class='filter__checkbox filter__checkbox_category' value="${key}" name="${key}" data-param = 'category' data-quantity="${categories[key].length}">
       <div class='category__title'>${key}&ensp;</div>
-      <div class='category__quantity filter__quantity' data-param ="${key}">(${categories[key].length})</div>
+      <div class='category__quantity filter__quantity' data-param ="${key}">(${categories[key].length}/</div><span>${categoriesAll[key].length})</span>
     </label>`
   }
 
@@ -27,13 +30,14 @@ function renderCategories(): void {
 function renderBrands() : void {
   const brandsArea = document.querySelector('.filter__brand_area');
   const brands = products.brands;
+  const brandsAll = allProducts.brands;
   let brandsInner = `<div class='brand__container'>`
   
   for (const key in brands) {
     brandsInner += `<label class='filter__string'>
       <input type = 'checkbox' class='filter__checkbox filter__checkbox_brand' value="${key}" name="${key}" data-param = 'brand' data-quantity="${brands[key].length}">
       <div class='brand__title'>${key}&ensp;</div>
-      <div class='brand__quantity filter__quantity' data-param ="${key}">(${brands[key].length})</div>
+      <div class='brand__quantity filter__quantity' data-param ="${key}">(${brands[key].length}/</div><span>${brandsAll[key].length})</span>
     </label>`
   }
 
@@ -207,12 +211,12 @@ function rerenderGoodsQuantity() {
     if (filteredBrands.includes((item as HTMLElement).dataset.param as string)) {
       for (const key in products.brands) {
         if (key == (item as HTMLElement).dataset.param) {
-          item.innerHTML = `(${products.brands[key].length})`;
+          item.innerHTML = `(${products.brands[key].length}/`;
         }
       }
     }
     else {
-      item.innerHTML = '(0)';
+      item.innerHTML = '(0/';
     }
   })
 
@@ -226,12 +230,12 @@ function rerenderGoodsQuantity() {
     if (filteredCategories.includes((item as HTMLElement).dataset.param as string)) {
       for (const key in products.categories) {
         if (key == (item as HTMLElement).dataset.param) {
-          item.innerHTML = `(${products.categories[key].length})`;
+          item.innerHTML = `(${products.categories[key].length}/`;
         }
       }
     }
     else {
-      item.innerHTML = '(0)';
+      item.innerHTML = '(0/';
     }
   })
 }
@@ -248,12 +252,22 @@ function resetFilters() {
 
 function saveUrl() {
   const url = document.location.href;
-  navigator.clipboard.writeText(url)
-  .then(() => {
-  })
-  .catch(err => {
-    console.log('Something went wrong', err);
-  });
+  
+  const copyTextarea = document.createElement("textarea");
+    copyTextarea.style.position = "fixed";
+    copyTextarea.style.opacity = "0";
+    copyTextarea.textContent = url;
+ 
+    document.body.appendChild(copyTextarea);
+    copyTextarea.select();
+    document.execCommand("copy");
+    document.body.removeChild(copyTextarea);
+  // navigator.clipboard.writeText(url)
+  // .then(() => {
+  // })
+  // .catch(err => {
+  //   console.log('Something went wrong', err);
+  // });
 }
 
 function changeSaveButton() {
