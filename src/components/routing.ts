@@ -47,7 +47,9 @@ export async function parseUrl() {
   queryParams.forEach (param => {
     if (param.startsWith("category")) {
       let arr = param.split('=');
-      filter.category = arr[1].split('*');
+      if (arr[1] != "") {
+        filter.category = arr[1].split('*');
+      }
     }
     if (param.startsWith("brand")) {
       let arr = param.split('=');
@@ -109,7 +111,10 @@ export function insertParam(key: string | undefined, value: string | number) {
           pair[1] = value;
         }
         else {
-          if(pair[1].includes(value)) {
+          if (pair[1] == value) {
+            pair = []
+          }
+          else if(pair[1].includes(value)) {
             let valueArr = pair[1].split("*");
             for (let i = 0; i < valueArr.length; i++) {
               if(valueArr[i] == value) {
