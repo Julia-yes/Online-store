@@ -84,8 +84,8 @@ function redirectToCart() {
 }
 
 function checkProductInCart() {
-  let arr = location.pathname.split("/");
-  let id = +arr[arr.length -1];
+  const arr = location.pathname.split("/");
+  const id = +arr[arr.length -1];
   const buttonAdd = document.querySelector(".product-page__button_left");
   if(buttonAdd?.innerHTML.startsWith("Add")) {
     cart.addProduct(id);

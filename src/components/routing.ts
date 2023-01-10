@@ -33,7 +33,7 @@ export async function parseUrl() {
   }
   const queryParams = document.location.search.slice(1).split('&');
   
-  let filter: IselectedFilters = {
+  const filter: IselectedFilters = {
     category : [],
     brand : [],
     price : {min: null, max : null},
@@ -46,20 +46,20 @@ export async function parseUrl() {
 
   queryParams.forEach (param => {
     if (param.startsWith("category")) {
-      let arr = param.split('=');
+      const arr = param.split('=');
       if (arr[1] != "") {
         filter.category = arr[1].split('*');
       }
     }
     if (param.startsWith("brand")) {
-      let arr = param.split('=');
-      let arrResult =arr[1].split('*');
-      let result = arrResult.map(item => decodeURIComponent(item)
+      const arr = param.split('=');
+      const arrResult =arr[1].split('*');
+      const result = arrResult.map(item => decodeURIComponent(item)
       )
       filter.brand = result;
     }
     if (param.startsWith("price")) {
-      let arr = param.split('=');
+      const arr = param.split('=');
       if(arr[0].includes("min")) {
         filter.price.min = Number(arr[1]);
       }
@@ -68,7 +68,7 @@ export async function parseUrl() {
       }
     }
     if (param.startsWith("stock")) {
-      let arr = param.split('=');
+      const arr = param.split('=');
       if(arr[0].includes("min")) {
         filter.stock.min = Number(arr[1]);
       }
@@ -77,15 +77,15 @@ export async function parseUrl() {
       }
     }
     if (param.startsWith("view")) {
-      let arr = param.split('=');
+      const arr = param.split('=');
       view = arr[1];
     }
     if (param.startsWith("sort")) {
-      let arr = param.split('=');
+      const arr = param.split('=');
       sort = arr[1];
     }
     if (param.startsWith("search")) {
-      let arr = param.split('=');
+      const arr = param.split('=');
       filter.stringSearch = arr[1];
     }
   })
@@ -102,7 +102,7 @@ export function insertParam(key: string | undefined, value: string | number) {
     
   }
   value = encodeURIComponent(value);
-  let kvp = document.location.search.slice(1).split('&');
+  const kvp = document.location.search.slice(1).split('&');
   let i=0;
   for(; i<kvp.length; i++){
     if (kvp[i].startsWith(key + '=')) {
@@ -115,7 +115,7 @@ export function insertParam(key: string | undefined, value: string | number) {
             pair = []
           }
           else if(pair[1].includes(value)) {
-            let valueArr = pair[1].split("*");
+            const valueArr = pair[1].split("*");
             for (let i = 0; i < valueArr.length; i++) {
               if(valueArr[i] == value) {
                 valueArr.splice(i, 1);
@@ -137,8 +137,8 @@ export function insertParam(key: string | undefined, value: string | number) {
   if (document.location.search== "") {
     kvp.shift();
   }
-  let params = kvp.join('&');
-  let newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + "?" + params;
+  const params = kvp.join('&');
+  const newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + "?" + params;
   window.history.pushState({path:newurl},'',newurl);
 }
 

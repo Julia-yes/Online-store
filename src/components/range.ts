@@ -8,7 +8,7 @@ let stockMin = 0;
 let stockMax = 0;
 
 export function fillValues() {
-  let pro = products.getProducts(data.products);
+  const pro = products.getProducts(data.products);
   pro.sort(function(el1, el2) {
     return el1.price - el2.price
   })
