@@ -1,5 +1,5 @@
 {
-    "plugins": ["prettier", "import"],
+    "plugins": ["prettier", "import", "jest"],
     "extends": [
         "plugin:prettier/recommended",
         "prettier"
@@ -11,11 +11,17 @@
     "env": {
         "es6": true,
         "browser": true,
-        "node": true
+        "node": true,
+        "jest/globals": true
     },
     "rules": {
         "no-debugger": "off",
         "no-console": 0,
-        "class-methods-use-this": "off"
+        "class-methods-use-this": "off",
+        "jest/no-disabled-tests": "warn",
+        "jest/no-focused-tests": "error",
+        "jest/no-identical-title": "error",
+        "jest/prefer-to-have-length": "warn",
+        "jest/valid-expect": "error"
     }
 }
