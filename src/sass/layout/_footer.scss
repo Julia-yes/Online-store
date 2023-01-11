@@ -22,6 +22,11 @@ footer {
     gap: 10px;
   }
 
+  &__links {
+    display: flex;
+    flex-direction: row;
+  }
+
   &__link {
     color: white;
     text-decoration: none;
