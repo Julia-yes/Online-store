@@ -6,8 +6,6 @@ import {changeRange, changePriceRange, changeStockRange} from './range';
 import {insertParam} from "./routing";
 
 function renderCategories(): void {
-  console.log(products);
-  console.log(allProducts)
   const categoriesArea = document.querySelector('.filter__category_area');
   const categories = products.categories;
   const categoriesAll = allProducts.categories;
@@ -262,12 +260,6 @@ function saveUrl() {
     copyTextarea.select();
     document.execCommand("copy");
     document.body.removeChild(copyTextarea);
-  // navigator.clipboard.writeText(url)
-  // .then(() => {
-  // })
-  // .catch(err => {
-  //   console.log('Something went wrong', err);
-  // });
 }
 
 function changeSaveButton() {
