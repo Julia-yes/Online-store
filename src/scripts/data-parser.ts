@@ -98,7 +98,6 @@ class Products implements IProducts {
       for (let [key, value] of Object.entries(product)) {
         if (typeof value === 'number') value = '' + value;
         if (nonInformativeKeys.includes(key)) continue;
-        //console.log(product, value);
         
         if (value.toLowerCase().includes(inputValue.toLowerCase())) {
           isValueFound = true;
@@ -176,7 +175,6 @@ class Products implements IProducts {
           
           if (value.toLowerCase().includes(filter.stringSearch.toLowerCase())) {
             isValueFound = true;
-            //console.log(el)
             break;
           }
         }

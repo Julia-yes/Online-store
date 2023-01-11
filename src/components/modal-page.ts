@@ -137,7 +137,7 @@ function addListenerForms() {
   const forms = document.querySelectorAll(".modal-page__input");
   forms.forEach(form => {
     form.addEventListener("blur", (e) => {
-      validateForms(e)
+      validateForms(e);
     })
   })
 }

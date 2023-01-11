@@ -2,8 +2,6 @@ import products from "../scripts/data-parser";
 
 describe('When initializing products,', () => {
   it('contains correct key', () => {
-    // cart.addProduct(productId);
-
     const expectedKeys = ['brands', 'categories', 'priceRange', 'stockRange', 'products']
     expectedKeys.forEach(key => {
       expect(key in products).toBeTruthy();
@@ -34,8 +32,18 @@ describe('When getting product by id,', () => {
     }
 
     const product = products.getProductById(1);
-
     expect(expectedProduct).toEqual(product);
   })
 })
 
+describe('When searching product by string,', () => {
+  it(' then corresponding products are shown', () => {
+    const searchString = 'iphone';
+    let productsAmount = 0;
+    products.products.forEach((el) => {
+      expect(JSON.stringify(el).includes(searchString)).toBeTruthy;
+      productsAmount++;
+    })
+    expect(productsAmount).toEqual(products.products.length);
+  })
+})
