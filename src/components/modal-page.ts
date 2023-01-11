@@ -73,9 +73,16 @@ function addListenerValidForm() {
 }
 
 function addCorrectView(e: Event) {
-  const value = (e.currentTarget as HTMLInputElement).value;
-  if (value.length >= 2) {
-    (e.currentTarget as HTMLInputElement).value = `${value.slice(0, 2)}/${value.slice(3)}`
+  let value = (e.currentTarget as HTMLInputElement).value;
+  let ind = value.indexOf("/");
+  if ( ind != -1) {
+    value = value.slice(0, ind) + value.slice(ind+1);
+  }
+  if (value.length > 2) {
+    (e.currentTarget as HTMLInputElement).value = `${value.slice(0, 2)}/${value.slice(2)}`
+  }
+  else {
+    (e.currentTarget as HTMLInputElement).value = `${value.slice(0, 2)}`;
   }
 }
 
@@ -105,7 +112,10 @@ export async function addListenerButtonBuy() {
 
 function addListenerConfirm() {
   const buttonConfirm = document.querySelector(".modal-page__button");
-  buttonConfirm?.addEventListener("click", checkCorrectInput)
+  buttonConfirm?.addEventListener("click", (e) => {
+    e.preventDefault();
+    checkCorrectInput()
+  })
 }
 
 function closeModalPage() {
@@ -130,6 +140,9 @@ function changePaySystem(event: Event) {
   }
   else if (value.startsWith("5")) {
     (img as HTMLImageElement).src = "../src/assets/img/card-m.png"
+  }
+  else {
+    (img as HTMLImageElement).src = "../src/assets/img/card.png"
   }
 }
 
@@ -161,7 +174,7 @@ export function validateForms(event: Event) {
   const value = (event.currentTarget as HTMLInputElement).value;
   if (name == "name") {
     const result = value.split(" ");
-    if (result.length < 2 || result[0].length < 2 || result[1].length < 2) {
+    if (result.length < 2 || result[0].length < 3 || result[1].length < 3) {
       typeError("Error name", name)
     }
     else {
