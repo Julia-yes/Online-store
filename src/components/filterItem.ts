@@ -4,6 +4,7 @@ import {renderGoods} from './goods';
 import {renderGoodsQuantity} from './store-page';
 import {changeRange, changePriceRange, changeStockRange} from './range';
 import {insertParam} from "./routing";
+import {IselectedFilters} from "./interfaces";
 
 function renderCategories(): void {
   const categoriesArea = document.querySelector('.filter__category_area');
@@ -20,9 +21,11 @@ function renderCategories(): void {
   }
 
   categoryInner += `</div>`;
+
   if (categoriesArea) {
     categoriesArea.innerHTML = categoryInner;
   }
+
 }
 
 function renderBrands() : void {
@@ -40,9 +43,11 @@ function renderBrands() : void {
   }
 
   brandsInner += `</div>`;
+
   if (brandsArea) {
     brandsArea.innerHTML = brandsInner;
   }
+
 }
 
 export function tickCheckboxes() {  
@@ -57,6 +62,7 @@ export function tickCheckboxes() {
     })
 
   }
+
   if(filter.category.length > 0) {
     const brandCheckboxs = document.querySelectorAll(".filter__checkbox_category");
     brandCheckboxs.forEach(item => {
@@ -67,6 +73,7 @@ export function tickCheckboxes() {
       }
     })
   }
+
 }
 
 function addFilterParams() {
@@ -82,19 +89,13 @@ function addEvents() {
   const buttonReset = document.querySelector('.filter__button_reset');
   buttonReset?.addEventListener('click', resetFilters);
   const buttonSave = document.querySelector('.filter__button_save');
+
   buttonSave?.addEventListener('click', () => {
     saveUrl();
     changeSaveButton();
   });
 }
 
-export interface IselectedFilters {
-  category: string[];
-  brand: string[];
-  price: { min: number | null; max: number | null; };
-  stock: { min: number | null; max: number | null; };
-  stringSearch: string;
-}
 
 const filterNull: IselectedFilters = {
   category : [],
@@ -116,6 +117,7 @@ export function changeFilters(event: Event) : void {
   const param : string | undefined = (event.currentTarget as HTMLElement).dataset.param;
   const newFilter: string | number = (event.currentTarget as HTMLInputElement).value;
   const side = (event.currentTarget as HTMLElement).dataset.side;
+
   if (param) {
     if (param === "price" || param === "stock") {
       if (side !== undefined) {
@@ -127,67 +129,87 @@ export function changeFilters(event: Event) : void {
         }
       }
     }
+
     else if (param === "search") {
       filter.stringSearch = newFilter;
     }
+
     else {
       if ((filter[param as keyof IselectedFilters] as unknown as string[]).indexOf(newFilter) !== -1) {
         const ind = (filter[param as keyof IselectedFilters] as unknown as string[]).indexOf(newFilter);
         (filter[param as keyof IselectedFilters] as unknown as string[]).splice(ind, 1)
       }
+
       else {
         (filter[param as keyof IselectedFilters] as unknown as string[]).push(newFilter);
       }
+
     }
   }
+
   if (param) {
     runFiltration(param);
   }
+
   if(param === "price" || param === "stock") {
     insertParam(`${param}-${side}`, newFilter);
   }
+
   else {
     insertParam(param, newFilter);
   }
+
 }
 
 function runFiltration(prop: string | null) {
   const filterDownloaded = new Filter;
+
   if (filter.category.length > 0) {
     (filter.category as unknown as string[]).forEach(item => {
       filterDownloaded.switchCategory(item)
     })
   }
+
   if (filter.brand.length > 0) {
     (filter.brand as unknown as string[]).forEach(item => {
       filterDownloaded.switchBrand(item)
     })
   }
+
   if(filter.price.min !== null) {
     filterDownloaded.setPrice("min", filter.price.min)
   }
+
   if(filter.price.max !== null) {
     filterDownloaded.setPrice("max", filter.price.max)
   }
+
   if(filter.stock.min !== null) {
     filterDownloaded.setStock("min", filter.stock.min)
   }
+
   if(filter.stock.max !== null) {
     filterDownloaded.setStock("max", filter.stock.max)
   }
+
   if(filter.stringSearch !== "") {
     filterDownloaded.setStringSearch(filter.stringSearch)
   }
+
   products.applyFilter(filterDownloaded);
+
   if (prop === 'price') {
     changeStockRange();
   }
+
   else if (prop === 'stock') {
     changePriceRange();
   }
+
   else {
     changeRange();
   }
+
   renderGoods();
   rerenderGoodsQuantity();
   renderGoodsQuantity();
@@ -201,6 +223,7 @@ export function changeMainFilter(filt: IselectedFilters) {
 function rerenderGoodsQuantity() {
   const quantityAreaBrands = document.querySelectorAll('.brand__quantity');
   const filteredBrands: string[] = [];
+
   for (const key in products.brands) {
     filteredBrands.push(key)
   }
@@ -208,11 +231,13 @@ function rerenderGoodsQuantity() {
   quantityAreaBrands.forEach(item => {
     if (filteredBrands.includes((item as HTMLElement).dataset.param as string)) {
       for (const key in products.brands) {
+
         if (key == (item as HTMLElement).dataset.param) {
           item.innerHTML = `(${products.brands[key].length}/`;
         }
       }
     }
+
     else {
       item.innerHTML = '(0/';
     }
@@ -220,6 +245,7 @@ function rerenderGoodsQuantity() {
 
   const quantityAreaCategory = document.querySelectorAll('.category__quantity');
   const filteredCategories: string[] = [];
+
   for (const key in products.categories) {
     filteredCategories.push(key)
   }
@@ -227,11 +253,13 @@ function rerenderGoodsQuantity() {
   quantityAreaCategory.forEach(item => {
     if (filteredCategories.includes((item as HTMLElement).dataset.param as string)) {
       for (const key in products.categories) {
+        
         if (key == (item as HTMLElement).dataset.param) {
           item.innerHTML = `(${products.categories[key].length}/`;
         }
       }
     }
+
     else {
       item.innerHTML = '(0/';
     }
@@ -264,6 +292,7 @@ function saveUrl() {
 
 function changeSaveButton() {
   const button = document.querySelector(".filter__button_save");
+  
   if (!button) return;
     button.innerHTML = "Saved";
     setTimeout(() => {
