@@ -1,7 +1,8 @@
+import {CreateComponent} from "../components/clases";
+
 export function renderFooter() {
-  const footerArea = document.querySelector(".footer");
-  if (footerArea) {
-    footerArea.innerHTML = `<div class="wrapper">
+  const footerArea = document.querySelector(".footer"); 
+  const content = `<div class="wrapper">
     <div class="footer__inner">
       <div class="footer__left">
         <div class="footer__text">Made by </div>
@@ -18,5 +19,5 @@ export function renderFooter() {
       </div>
     </div>
   </div>`
-  }
+  const footer = new CreateComponent(footerArea, "div", ["wrapper"], content)
 }

@@ -5,12 +5,13 @@ import {renderGoodsQuantity} from './store-page';
 import {changeRange, changePriceRange, changeStockRange} from './range';
 import {insertParam} from "./routing";
 import {IselectedFilters} from "./interfaces";
+import {CreateComponent} from "../components/clases";
 
 function renderCategories(): void {
   const categoriesArea = document.querySelector('.filter__category_area');
   const categories = products.categories;
   const categoriesAll = allProducts.categories;
-  let categoryInner = `<div class='category__container'>`
+  let categoryInner = ``;
   
   for (const key in categories) {
     categoryInner += `<label class='filter__string'>
@@ -20,19 +21,14 @@ function renderCategories(): void {
     </label>`
   }
 
-  categoryInner += `</div>`;
-
-  if (categoriesArea) {
-    categoriesArea.innerHTML = categoryInner;
-  }
-
+  const categoriesBlock = new CreateComponent(categoriesArea, "div", ["category__container"], categoryInner)
 }
 
 function renderBrands() : void {
   const brandsArea = document.querySelector('.filter__brand_area');
   const brands = products.brands;
   const brandsAll = allProducts.brands;
-  let brandsInner = `<div class='brand__container'>`
+  let brandsInner = ``
   
   for (const key in brands) {
     brandsInner += `<label class='filter__string'>
@@ -42,12 +38,7 @@ function renderBrands() : void {
     </label>`
   }
 
-  brandsInner += `</div>`;
-
-  if (brandsArea) {
-    brandsArea.innerHTML = brandsInner;
-  }
-
+  const brandsBlock = new CreateComponent(brandsArea, "div", ["brand__container"], brandsInner)
 }
 
 export function tickCheckboxes() {  
