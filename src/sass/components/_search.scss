@@ -1,0 +1,28 @@
+.search {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 30px;
+  width: 100%;
+  border-bottom: 2px solid $gray;
+
+  &__block {
+    display: flex;
+    flex-direction: row;
+    border: 2px solid $red;
+    border-radius: 5px;
+  }
+
+  &__img {
+    width: 20px;
+    margin: 10px;
+  }
+
+  &__input {
+    border: none;
+    &:focus {
+      outline: none;
+    }
+  }
+}

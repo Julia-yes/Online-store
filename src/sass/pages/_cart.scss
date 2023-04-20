@@ -1,0 +1,273 @@
+.cart__empty {
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  align-self: center;
+  margin-top: 5%;
+  font-size: 3rem;
+}
+
+.products {
+  width: 70%;
+  box-shadow: 0 5px 15px 0 $gray;
+
+  &__header {
+    text-align: center;
+    text-transform: uppercase;
+    padding: 5px 0;
+    font-size: 28px;
+    background-color: $red;
+    color: white;
+    border-radius: 10px 0;
+  }
+
+  &-summary {
+    display: flex;
+    margin: 0 1%;
+  }
+}
+
+.cart__product {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 2px solid $gray;
+}
+
+.product {
+  &__order {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 3%;
+    border-radius: 50%;
+    position: relative;
+
+    &:after {
+      content: "";
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      border: 1px solid $red;
+      position: absolute;
+    }
+  }
+
+  &__thumbnail {
+    width: 20%;
+    height: 100%;
+    padding: 5px 0;
+    
+
+    &-img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 10px;
+    overflow: hidden;
+    }
+  }
+
+  &__data {
+    width: 60%;
+
+    &-name {
+      text-align: center;
+      margin-top: 2%;
+    }
+
+    &-description {
+      margin-top: 2%;
+      text-align: center;
+      font-style: italic;
+      color: $gray-dark;
+    }
+
+    &-rating {
+      margin-top: 2%;
+      text-align: center;
+    }
+
+    &-discount {
+      text-align: center;
+      padding-top: 5px;
+    }
+  }
+      
+  &__buy-data {
+    margin: auto;
+  }
+
+    &__stock {
+      text-align: center;
+    }
+
+  &-amount {
+    &-control {
+      display: flex;
+      align-items: center;
+      padding: 10px 0;
+    }
+
+    &__current {
+      margin: 0 10px;
+    }
+
+    &__el {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 30px;
+      height: 30px;
+      padding: 0 4px;
+      border: 1px solid black;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: background-color 0.3s, border-color 0.3s;
+
+      &:hover {
+        background-color: $red-light;
+        border-color: $red;
+      }
+    }
+  }
+
+  &__price {
+    text-align: center;
+  }
+
+}
+
+.summary {
+  width: 30%;
+  margin-left: 5%;
+  font-size: 28px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px 0 $gray;
+ 
+
+  &__header {
+    border-radius: 10px 0;
+    text-align: center;
+     text-transform: uppercase;
+    padding: 5px 0;
+    background-color: $red;
+    color: white;
+  }
+}
+
+.content__amount {
+  padding-top: 30px;
+  display: flex;
+  justify-content: center;
+
+  &-value {
+    margin-left: 2%;
+  }
+}
+
+.content__price {
+  margin-top: 3%;
+  display: flex;
+  justify-content: center;
+
+  &-value {
+    margin-left: 2%;
+    &-new {
+       margin-left: 2%;
+    }
+  }
+
+  &-new {
+        margin-top: 3%;
+        display: flex;
+        justify-content: center;
+      }
+}
+
+.promo {
+  text-align: center;
+  margin-top: 5%;
+
+  &__hint-value {
+    font-style: italic;
+    text-decoration: dashed;
+    color: gainsboro;
+  }
+
+  &__input {
+    margin-bottom: 20px;
+  }
+
+  &-table{ 
+    &__header {
+      margin: 3% 0;
+    }
+
+    &__row {
+      display: flex;
+      justify-content: center;
+      margin: 2% 0;
+
+      &-amount {
+        margin: 0 5%;
+      }
+      
+      &-remove {
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        border: 1px solid black;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.cart-buy__button {
+  margin: 0 auto;
+  margin-bottom: 30px;
+  text-align: center;
+  width: 40%;
+}
+
+
+.pagination {
+  margin: 1% 1%;
+
+  &__per-page-value {
+    width: 30px;
+    text-align: center;
+  }
+}
+
+.switch-page {
+  display: flex;
+  align-items: center;
+  margin: 20px 0;
+
+  &__text {
+    margin-right: 20px;
+  }
+
+  &__current {
+    margin: 0 10px;
+  }
+
+  &__control {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    padding: 5px 10px;
+    border: 1px solid black;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+
+      &:hover {
+        background-color: $red-light;
+        border-color: $red;
+      }
+  }
+}

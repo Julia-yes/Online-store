@@ -1,0 +1,179 @@
+.product-page {
+  display: grid;
+   grid-template-areas: 
+   'crumbs crumbs'
+   'product purhase';
+   grid-template-columns: 2fr 1fr;
+   padding: 20px 0;
+
+   &__button {
+    font-size: 20px;
+    padding: 10px 20px;
+
+    &_add {
+      margin-right: 10px;
+    }
+  }
+}
+
+.crumbs {
+  display: flex;
+  grid-area: crumbs;
+  margin: 0 auto;
+  gap: 30px;
+  justify-content: center;
+  padding-bottom: 20px;
+  
+}
+
+.product {
+  grid-area: product;
+  padding: 20px;
+  width: 80%;
+  text-align: center;
+  margin: 0 auto;
+  display: flex;
+  gap: 10px;
+}
+
+.data {
+
+  &__title {
+    font-size: 32px;
+    color: $red;
+    font-weight: 700;
+    padding-bottom: 30px;
+    border-bottom: 2px solid $gray;
+  }
+
+  &__item {
+    color: $red;
+    padding: 10px;
+    font-size: 28px;
+
+    &-content {
+      color: black;
+      font-size: 24px;
+      padding-top: 10px;
+    }
+  }
+}
+
+.photos {
+  width: 50%;
+}
+
+.small-photos {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  padding-top: 20px;
+}
+
+.small-photo {
+  width: 25%;
+  cursor: pointer;
+  transition: transform 0.3s;
+  
+  & img {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    object-fit: cover;
+    background-color: white;
+  }
+
+  &:hover {
+    transform: scale(1.5)
+  }
+}
+
+.main-photo {  
+  height: 300px;
+  padding-right: 30px;
+  padding-bottom: 10px;
+  
+   &__img {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    object-fit: cover;
+   }
+}
+
+.crumb {
+  text-transform: uppercase;
+  font-size: 36px;
+  color: $red;
+  &::after {
+    content: ">>";
+    padding-left: 20px;
+  }
+
+  &:last-child {
+    &::after{
+      content: "";
+    }
+  }
+}
+
+.purchase {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  grid-area: purhase;
+  margin: auto 0;
+  padding: 30px 10px;
+  box-shadow: 0 0 10px $gray;
+  margin: auto;
+  border-radius: 10px;
+  width: 65%;
+}
+
+.stats {
+  display: flex;
+  flex-direction: row;
+  gap: 50px;
+  align-self: center;
+  justify-content: center;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  &__item {
+    position: relative;
+    padding: 10px;
+
+    &:after {
+      content: "";
+      width: 100px;
+      height: 100px;
+      border: 2px solid $red;
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+}
+
+.price {
+  padding: 20px 0 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+
+  &__amount {
+    font-size: 38px;
+    color: $red;
+    font-weight: 700;
+  }
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}

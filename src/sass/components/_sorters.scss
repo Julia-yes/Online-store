@@ -1,0 +1,9 @@
+.sorters {
+  &__button {
+    margin-right: 10px;
+
+    &_active {
+      box-shadow: 0 0 15px 1px $red;
+    }
+  }
+}

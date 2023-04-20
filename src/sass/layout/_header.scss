@@ -1,0 +1,40 @@
+.header{
+  background-color: $gray-background;
+  border-bottom: 4px solid $red;
+  border-radius: 0 0 25px 25px;
+
+  &__template {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__price {
+    color: $red;
+    font-size: 36px;
+    font-weight: 700;
+  }
+
+  &__logo {
+    height: 70px;
+  }
+
+  &__cart {
+    position: relative;
+    &_img{
+      height: 90px;
+    }
+    &_quantity {
+      position: absolute;
+      background-color: white;
+      color: $red;
+      border-radius: 50%;
+      border: 1px solid $red;
+      padding: 3px 9px;
+      font-size: 24px;
+      font-weight: 700;
+      top: 50px;
+    }
+  }
+}

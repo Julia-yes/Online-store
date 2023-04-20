@@ -1,0 +1,70 @@
+
+.filter {
+  width: 20%;
+
+  &__buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  &__item {
+    padding-bottom: 30px;
+  }
+
+  &__title {
+    color: $red;
+    font-size: 28px;
+    padding-bottom: 10px;
+    text-align: center;
+  }
+
+  &__area {
+    padding: 10px;
+    border: 2px solid $red;
+    border-radius: 10px;
+    height: 300px;
+    overflow: auto;
+
+    &_range {
+      height: 100px;
+    }
+  }
+
+  &__string {
+    display: flex;
+    flex-direction: row;
+    cursor: pointer;
+  }
+
+  ::-webkit-scrollbar-button {
+    width:10px;
+    height:0px;
+    cursor: pointer;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background-color:#ecedee;
+    border-radius: 10px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background-color:$red-light;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover{
+    background-color:$red;
+  }
+  
+  ::-webkit-resizer{
+    width:4px;
+    height:0px
+  }
+  
+  ::-webkit-scrollbar{
+    width: 10px;
+  }
+}

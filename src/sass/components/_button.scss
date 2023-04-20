@@ -1,0 +1,14 @@
+.button {
+  background-color: $red;
+  color: white;
+  border: 1px solid $red;
+  border-radius: 10px;
+  cursor: pointer;
+  padding: 5px 10px;
+  font-size: 18px;
+  transition: background-color .3s;
+
+  &:hover {
+    background-color: $red-dark;
+  }
+}
