@@ -70,6 +70,8 @@
   &__error {
     color: $red-dark;
     font-weight: 700;
+    position: absolute;
+    right: 20px;
     
     &_img {
       width: 20px;

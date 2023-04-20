@@ -2,6 +2,7 @@ const path = require('path');
 const { merge } = require('webpack-merge');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const baseConfig = {
     entry: path.resolve(__dirname, './src/index.ts'),
@@ -19,14 +20,22 @@ const baseConfig = {
                 ],
             },
             {
-                test: /\.tsx?$/,
+                test: /\.ts?$/,
                 use: 'ts-loader',
                 exclude: /node_modules/,
             },
+            {
+                test: /\.(png|svg|jpg|jpeg|gif)$/i,
+                type: 'asset/resource',
+              },
+              {
+                test: /\.(woff|woff2|eot|ttf|otf)$/i,
+                type: 'asset/inline',
+              },
         ],
     },
     resolve: {
-        extensions: ['.tsx', '.ts', '.js'],
+        extensions: ['.ts', '.js'],
     },
     output: {
         filename: 'index.js',
@@ -35,13 +44,17 @@ const baseConfig = {
     },
     plugins: [
         new CleanWebpackPlugin(),
-        new MiniCssExtractPlugin()
+        new MiniCssExtractPlugin(),
+        new HtmlWebpackPlugin({
+            title: 'webpack Boilerplate',
+            template: path.resolve(__dirname, './index.html'),
+            filename: 'index.html',
+        }),
     ],
 };
 
 module.exports = ({ mode }) => {
     const isProductionMode = mode === 'prod';
     const envConfig = isProductionMode ? require('./webpack.prod.config') : require('./webpack.dev.config');
-
     return merge(baseConfig, envConfig);
 };

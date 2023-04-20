@@ -23,7 +23,7 @@ function renderTemplate() : void {
       <main class = 'main'>Main
         <a href='/product'>Product</a>
       </main>
-      <footer class = 'footer'>Footer</footer>
+      <footer class = 'footer'></footer>
     </div>`
   }
 }

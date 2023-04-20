@@ -2,7 +2,8 @@ import {renderErrorPage} from './error-page';
 import {renderCartPage} from './cart-page';
 import {renderProductPage} from './product-page';
 import {renderStorePage} from './store-page';
-import {IselectedFilters, changeMainFilter, tickCheckboxes} from './filterItem';
+import {changeMainFilter, tickCheckboxes} from './filterItem';
+import {IselectedFilters} from './interfaces';
 import {makeSorting} from './sorting';
 import {applyView} from "./view";
 import {fillInput} from "./search";
@@ -89,7 +90,7 @@ export async function parseUrl() {
       filter.stringSearch = arr[1];
     }
   })
-  await changeMainFilter(filter);
+  changeMainFilter(filter);
   fillInput(filter.stringSearch)
   makeSorting(sort);
   applyView(view);

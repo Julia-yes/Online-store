@@ -1,11 +1,10 @@
 import cart from "../scripts/cart";
 import { updateHeader } from './header';
+import {CreateComponent} from "../components/clases";
 
 export function renderModalPage() {
-  const main = document.querySelector('.main');
-  const modalPage = document.createElement("section");
-  modalPage.className = "modal-page";
-  modalPage.innerHTML = `<form class="modal-page__wrapper">
+  const main = document.querySelector('.main');  
+  const content = `<form class="modal-page__wrapper">
     <h1 class="modal-page__title">Personal information</h1>
     <div class="modal-page__info">
       <label>
@@ -54,7 +53,7 @@ export function renderModalPage() {
     <button class="modal-page__button button">Confirm</button>
   </form>
   `
-  main?.append(modalPage);
+  const modalPage = new CreateComponent(main, "section", ["modal-page"], content);
   const modalArea = document.querySelector(".modal-page");
   modalArea?.addEventListener("click", (e) => {
     if (e.target == modalArea) {
@@ -131,7 +130,6 @@ function addListenerCardNumber() {
 function changePaySystem(event: Event) {
   const value = (event.currentTarget as HTMLInputElement).value;
   const img = document.querySelector(".credit-card__logo");
-  if (img)
   if (value.startsWith("3")) {
     (img as HTMLImageElement).src = "../src/assets/img/card_am.png"
   }
